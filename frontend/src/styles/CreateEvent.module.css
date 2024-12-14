@@ -1,0 +1,37 @@
+.createEventContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+    margin: 0;
+}
+
+
+.parrameterBox{
+    padding-top: 1vh;
+    padding-left: 3vh;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    width: 100%;
+}
+.parrameterTitle{
+    padding: 0;
+    margin:0;
+}
+
+.parrameterInput{
+    padding: 0 0 0 0.5vw;
+    margin:0 4vw 0 0;
+    font-size: 16px;
+    width: 90%;
+    
+}
+.eventSubmitButton{
+    width:fit-content;
+    align-self: end;
+    padding: 1vh 2vh;
+    margin:3vh 1vw 0  0;
+}

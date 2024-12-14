@@ -1,0 +1,196 @@
+body {
+    background-color: white;
+    height: 100vh;
+}
+
+.landingPageContainer{
+    background-color: #00658C;
+    position: absolute;
+    width: 100%;
+    
+    top: 0;
+    left: 0;
+    display: inline-flex;
+}
+
+.landingPageTitle{
+    color: white;
+    font-size: 48px;
+    margin: 0 auto;
+    padding: 0vh;
+}
+
+.sidebarContainer{
+    width: 15%;
+    height: 100vh;
+}
+
+.landingContentContainer{
+    width: 85%;
+    padding: 2.5vh 10vw;
+}
+
+
+
+.loggedOutNotificationContainer{
+    display: flex;
+    padding: 2vh;
+    margin: 0 auto;
+    border-radius: 20px;   
+    height: inherit;
+    background-color: #ffffff;
+    border:#7f7f7f  solid  3px;
+}
+
+.eventsContainer{
+    margin-top: 2vh;
+    position: relative;
+    height: auto;
+    display: flex;
+    min-height: 25vh;
+    flex-direction: column;
+    align-items: center;
+    padding: 2vh;
+    border-radius: 20px;   
+    background-color: #ffffff;
+    border:#7f7f7f  solid  3px;
+}
+.eventViewTitleBox{
+    display: flex;
+    align-items: start;
+    padding: 1vh 1vh 1vh 2vh;
+    margin: 0 auto;
+    border-radius: 20px;
+    width: 96%;   
+    height: inherit;
+    background-color: #3799BF;
+}
+
+
+.eventTableListingBox{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1vh 1vh 1vh 2vh;
+    align-self: center;
+    margin: 0.5vh 0vw;
+   
+    border-radius: 20px;
+    
+    width: 96%;   
+    height: inherit;
+
+    background-color: #ffffff;
+    border:#7f7f7f  solid  2px;
+    
+}
+
+.eventName{
+    color:#000000;
+    margin-right: 0;
+    width: 40%;
+    text-align: left;
+    font-size: 16px;
+    overflow: auto;
+    padding-left:0.25vh;
+}
+.eventLocation{
+    color:#000000;
+    margin-right: 0;
+    width: 20%;
+    text-align: left;
+    font-size: 16px;
+    overflow: auto;
+    padding-left:0.25vh;
+}
+.eventDate{
+    color:#000000;
+    margin-right: 0;
+    width: 13%;
+    text-align: left;
+    overflow: auto;
+    font-size: 16px;
+    padding-left:0.25vh;
+}
+
+.eventTitleName{
+    padding: 0;
+    width: 39%;
+    text-align: left;
+    color: white;
+    font-size: 16px;
+    padding-left:0.25vh;
+}
+
+.eventTitleLocation{
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    padding-left:0.25vh;
+    width: 20%;
+    text-align: left;
+}
+.eventTitleDate{
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    padding-left:0.25vh;
+    width: 20%;
+    text-align: left;
+}
+
+
+
+.eventViewButton{
+    width: fit-content;
+    position: relative;
+    height: inherit;
+    padding: 0.5vh 1.5vw;
+    align-self: flex-end;
+    text-align: center;
+    
+    margin: 0 0 0 0.5vh;
+    font-size: 15px;
+}
+
+.eventSignInButton{
+    width: fit-content;
+    position: relative;
+    height: inherit;
+    padding: 0.5vh 0.5vw;
+    text-align: center;
+    margin: 0 0 0 0.5vh;
+    font-size: 15px;
+}
+
+
+.eventTitle{
+    padding: 0;
+    color: Black;
+    align-self: flex-start;
+    margin: 0 0 1vh 2vh;
+    font-size: 32px;
+}
+.signInLink{
+    margin-left: 0.5vh;
+    font-size: 22px;
+    font-weight: bold;
+    color:#000000;
+}
+.signInLink:hover{
+    color:#7f7f7f
+}
+.enrolledDiv{
+    width: fit-content;
+    height: 2.75vh;
+    border-radius: 15px;
+    background-color: #9c9c9c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1vw;
+    margin: 0 0 0 0.5vh;
+    font-size: 16px;
+    font-weight: bold;
+    font-size: 16px;
+    align-self: center;
+}

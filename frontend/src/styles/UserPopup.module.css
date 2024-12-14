@@ -1,0 +1,42 @@
+.popupContainer{
+    position:fixed;
+    display: flex;
+    flex-direction: column;
+    padding: 2vh;
+    border-radius: 20px;   
+    height: fit-content;
+    width: 60vw;
+    max-width: 80vw;
+    background-color: #ffffff;
+    border:#7f7f7f  solid  3px;
+    
+    
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.popupWindow{
+    width:100vw;
+    height:100vh;
+    top:0;
+    left:0;
+    position: fixed;
+    z-index: 1;
+    backdrop-filter: blur(4px);
+}
+
+.popupParram{
+    display: flex;
+    flex-direction: row;
+    padding: 1vh;
+    margin: 0 auto;
+    border-radius: 20px; 
+    overflow: auto;  
+    width: 96%;   
+    height: inherit;
+    color:black;
+    text-align: start;
+
+}
