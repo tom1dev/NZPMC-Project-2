@@ -1,0 +1,158 @@
+.sidebarContainer{
+    width: 15%;
+    height: 100vh;
+    position: fixed;
+    border-radius: 0 20px 20px 0;
+    border: 2px solid #7f7f7f;
+    overflow: hidden;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.logo{
+    color: #000000;
+    padding-bottom: 1vh;
+    border-bottom: 2px solid #7f7f7f;
+    margin:2vh 0 2vh 0;
+}
+
+.signIn{
+    margin-top: 2vh;
+    border-radius: 15px;
+    background-color: #64B3C9;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 1vh 6vh 1vh 6vh;
+    
+}
+button.signIn{
+    padding: 1vh;;
+}
+Link.signIn{
+    padding: 1vh 6vh 1vh 6vh;
+}
+
+.signIn:hover{
+    background-color: #00658C;
+    cursor: pointer;
+}
+
+.userInfoContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding:  0 0 2vh 0;
+    margin: 0;
+    border-bottom: 2px solid #7f7f7f;
+}
+.userInfoParramContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 0.5vw 0 0vw 0;
+    margin: 0 0 1vh 0;
+    align-self: center;
+    border-radius: 15px;
+    border: 2px solid #7f7f7f;
+}
+
+.userParramTitle{
+    margin: 0 0  0 1.5vw;
+    padding: 0;
+    color: #000000;
+}
+
+.userParram{
+    padding: 0;
+    margin: 0 0 1vh 1.8vw;
+    color: #000000;
+    border:0;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: default;
+    border-radius: 0;
+}
+
+.userInput{
+    padding: 0;
+    margin: 0 0 1vh 1.8vw;
+    color: #000000;
+    font-size: 16px;
+    border-radius: 0;
+
+
+
+
+}
+
+.userEditButton{
+    width: fit-content;
+    margin: 0 1vw 0 0;
+    padding: 0;
+    color: #ffffff;
+    background-color: #64B3C9;
+    border: 0;
+    font-size: 16px;
+    border-radius: 15px;
+    align-self: flex-end;
+    padding: 0.5vh 1vh 0.5vh 1vh;
+}
+
+.userSaveButton{
+    width: fit-content;
+    margin: 0 0.5vw 0 0;
+    padding: 0;
+    color: #ffffff;
+    background-color: #4ec263;
+    border: 0;
+    font-size: 16px;
+    border-radius: 15px;
+    align-self: flex-end;
+    padding: 0.5vh 1vh 0.5vh 1vh;
+
+}
+.userSaveButton:hover{
+    background-color: #3e9c4f;
+    cursor: pointer;
+}
+
+.userCancelButton{
+    width: fit-content;
+    margin: 0 0.5vw 0 0;
+    padding: 0;
+    color: #ffffff;
+    background-color: #d15f32;
+    border: 0;
+    font-size: 16px;
+    border-radius: 15px;
+    align-self: flex-end;
+    padding: 0.5vh 1vh 0.5vh 1vh;
+
+}
+.userCancelButton:hover{
+    background-color: #88341c;
+    cursor: pointer;
+}
+
+.buttonContainer{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+    padding: 0;
+
+
+
+}
+
+.userInfoTitle{
+    padding-left: 2vh;
+    display: flex;
+    margin:0 0 0.5vh 0;
+    flex-direction: column;
+    align-items:flex-start;
+    width: 100%;
+    color:#000000;
+}
