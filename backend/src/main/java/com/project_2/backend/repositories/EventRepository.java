@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface EventRepositoryMongo extends MongoRepository <EventModel, String> {
-    List<EventModel> findByName(String name);
+public interface EventRepository extends MongoRepository <EventModel, String> {
 }
