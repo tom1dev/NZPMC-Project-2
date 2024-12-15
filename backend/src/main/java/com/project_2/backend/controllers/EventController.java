@@ -21,4 +21,6 @@ public class EventController {
         return eventService.getAllEvents();
     }
 
+
+
 }
