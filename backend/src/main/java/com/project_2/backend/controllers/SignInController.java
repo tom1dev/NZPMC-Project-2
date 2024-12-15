@@ -13,6 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/signin")
+@CrossOrigin("*")
 public class SignInController {
     @Autowired
     private SignInService SignInService;

@@ -34,7 +34,7 @@ public class EventService {
 
         List<String> userIDs = usersEventsService.getEventRegisteredIDs(eventID);
 
-        return Integer.toHexString(userIDs.size());
+        return String.valueOf(userIDs.size());
 
     }
 

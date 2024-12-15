@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin("*")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -32,7 +33,7 @@ public class UserController {
 
     @GetMapping("/mydetails")
     public String getUserDetails() {
-        return "mydetails";
+        return null;
     }
 
     @GetMapping("/{id}")

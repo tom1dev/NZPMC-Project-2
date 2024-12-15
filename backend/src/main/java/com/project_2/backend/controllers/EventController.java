@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/event")
+@CrossOrigin("*")
 public class EventController {
     @Autowired
     private EventService eventService;
@@ -39,9 +41,9 @@ public class EventController {
     }
 
     @GetMapping("/{id}/userAmount")
-    public ResponseEntity<String> getUserAmount(@PathVariable int id) {
+    public ResponseEntity<String> getUserAmount(@PathVariable String id) {
         try{
-            String amount = eventService.getUserAmountByEventId(String.valueOf(id));
+            String amount = eventService.getUserAmountByEventId(id);
             if(amount != null){
                 return ResponseEntity.ok(amount);
             }else{
