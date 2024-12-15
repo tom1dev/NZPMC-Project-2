@@ -16,8 +16,14 @@ public class UserService {
     @Autowired
     UsersEventsService usersEventsService;
 
-    public UserModel createUser(UserModel user) {
-        return userRepository.save(user);
+    @Autowired
+    SignInService signInService;
+
+    public String createUser(UserModel user) {
+        user.setPasswordHash(signInService.hashPassword(user.getPasswordHash()));
+        userRepository.save(user);
+
+        return signInService.generateToken(user.getEmail());
     }
 
     public List<UserModel> getAllUsers() {
@@ -47,6 +53,22 @@ public class UserService {
 
     }
 
+    public String signIn(String email, String password) {
+        try{
+            String passwordHash = signInService.hashPassword(password);
+
+            UserModel user  = getUserByEmail(email);
+
+            if(user!= null && user.getPasswordHash().equals(passwordHash)) {
+                return signInService.generateToken(email);
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return null;
+    }
 
 
     public UserModel updateUser(UserModel user) {

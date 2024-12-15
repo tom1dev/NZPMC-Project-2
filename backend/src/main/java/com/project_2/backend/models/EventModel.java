@@ -14,6 +14,7 @@ public class EventModel {
     private String location;
     private String date;
 
+
     public String getId() {
         return id;
     }
@@ -53,6 +54,10 @@ public class EventModel {
     public void setDate(String date) {
         this.date = date;
     }
+
+
+
+
 
 
 
