@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/signinus")
+@RequestMapping("/api/signin")
 public class SignInController {
     @Autowired
     private SignInService SignInService;
@@ -28,6 +28,7 @@ public class SignInController {
                 return new ResponseEntity<>("SignInFailed", HttpStatus.UNAUTHORIZED);
             }
         }catch (Exception e){
+            System.out.println(e);
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 
         }

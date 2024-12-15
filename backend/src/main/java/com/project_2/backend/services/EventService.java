@@ -14,7 +14,8 @@ public class EventService {
     @Autowired
     private EventRepository eventRepository;
 
-    private UserService userService;
+    @Autowired
+    private UsersEventsService usersEventsService;
 
     public List<EventModel> getAllEvents(){
         return eventRepository.findAll();
@@ -30,8 +31,8 @@ public class EventService {
     }
 
     public String getUserAmountByEventId(String eventID){
-        UsersEventsService userEventsService = new UsersEventsService();
-        List<String> userIDs = userEventsService.getEventRegisteredIDs(eventID);
+
+        List<String> userIDs = usersEventsService.getEventRegisteredIDs(eventID);
 
         return Integer.toHexString(userIDs.size());
 

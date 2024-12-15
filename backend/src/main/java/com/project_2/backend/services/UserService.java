@@ -1,7 +1,6 @@
 package com.project_2.backend.services;
 
 import com.project_2.backend.models.UserModel;
-import com.project_2.backend.repositories.EventRepository;
 import com.project_2.backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,34 +11,33 @@ import java.util.List;
 @Service
 public class UserService {
     @Autowired
-    private UserRepository UserRepository;
+    private UserRepository userRepository;
+
+    @Autowired
+    UsersEventsService usersEventsService;
 
     public UserModel createUser(UserModel user) {
-        return UserRepository.save(user);
+        return userRepository.save(user);
     }
 
     public List<UserModel> getAllUsers() {
-        return UserRepository.findAll();
+        return userRepository.findAll();
     }
 
     public UserModel getUserById(String id) {
-        return UserRepository.findById(id).orElse(null);
+        return userRepository.findById(id).orElse(null);
     }
 
     public UserModel getUserByEmail(String email) {
-        return UserRepository.findByEmail(email);
+        return userRepository.findByEmail(email);
     }
 
     public List<String> getAllUserEventIds(String id){
-        UsersEventsService usersEventsService = new UsersEventsService();
 
         return usersEventsService.getUserEventIDs(id);
     }
 
     public Boolean createUserEvent(String userId, String eventId){
-
-
-        UsersEventsService usersEventsService = new UsersEventsService();
 
         if (usersEventsService.addUserEvent(userId, eventId)){
             return true;
@@ -47,16 +45,12 @@ public class UserService {
             return false;
         }
 
-
-
-
-
     }
 
 
 
     public UserModel updateUser(UserModel user) {
-        return UserRepository.save(user);
+        return userRepository.save(user);
 
     }
 

@@ -13,6 +13,8 @@ import static java.awt.SystemColor.text;
 
 @Service
 public class SignInService {
+    @Autowired
+    UserService userService;
 
     private String hashPassword(String password) {
         try{
@@ -29,7 +31,6 @@ public class SignInService {
         try{
             String passwordHash = hashPassword(password);
 
-            UserService userService = new UserService();
             UserModel user  = userService.getUserByEmail(email);
 
             if(user!= null && user.getPasswordHash().equals(passwordHash)) {
