@@ -29,7 +29,11 @@ public class EventService {
         return eventRepository.save(event);
     }
 
-    public String getUserAmountByEventId(String userId){
+    public String getUserAmountByEventId(String eventID){
+        UsersEventsService userEventsService = new UsersEventsService();
+        List<String> userIDs = userEventsService.getEventRegisteredIDs(eventID);
+
+        return Integer.toHexString(userIDs.size());
 
     }
 
