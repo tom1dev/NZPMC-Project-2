@@ -52,7 +52,7 @@ public class EventController {
         }
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<String> CreateEvent(@RequestBody EventModel event) {
         try{
             eventService.createEvent(event);

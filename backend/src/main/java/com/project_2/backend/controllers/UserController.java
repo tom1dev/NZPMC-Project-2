@@ -18,7 +18,7 @@ public class UserController {
     private UserService userService;
 
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<UserModel>> getAllUsers() {
         List<UserModel> users  = userService.getAllUsers();
 
@@ -57,7 +57,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<String> CreateUser(@RequestBody UserModel user) {
         UserModel userCreated = userService.createUser(user);
 
