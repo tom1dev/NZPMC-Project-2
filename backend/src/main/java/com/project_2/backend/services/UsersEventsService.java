@@ -40,6 +40,16 @@ public class UsersEventsService {
 
     }
 
+    public Boolean addUserEvent(String userID, String eventID){
+        UsersEventsModel usersEventsModel = new UsersEventsModel();
+        usersEventsModel.setUserId(userID);
+        usersEventsModel.setEventId(eventID);
+        usersEventsRepository.save(usersEventsModel);
+        return true;
+
+
+    }
+
 
 
 

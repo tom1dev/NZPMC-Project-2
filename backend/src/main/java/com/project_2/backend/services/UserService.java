@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class UserService {
     @Autowired
@@ -34,6 +35,25 @@ public class UserService {
 
         return usersEventsService.getUserEventIDs(id);
     }
+
+    public Boolean createUserEvent(String userId, String eventId){
+
+
+        UsersEventsService usersEventsService = new UsersEventsService();
+
+        if (usersEventsService.addUserEvent(userId, eventId)){
+            return true;
+        }else{
+            return false;
+        }
+
+
+
+
+
+    }
+
+
 
     public UserModel updateUser(UserModel user) {
         return UserRepository.save(user);

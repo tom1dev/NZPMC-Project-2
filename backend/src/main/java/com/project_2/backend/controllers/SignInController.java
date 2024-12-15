@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/event")
+@RequestMapping("/api/signinus")
 public class SignInController {
     @Autowired
     private SignInService SignInService;
