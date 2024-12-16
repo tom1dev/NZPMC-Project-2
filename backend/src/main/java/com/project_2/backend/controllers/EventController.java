@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -31,10 +32,12 @@ public class EventController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<EventModel> getEventById(@PathVariable int id) {
-        EventModel event = eventService.getEventById(String.valueOf(id));
+    public ResponseEntity<List<EventModel>> getEventById(@PathVariable String id) {
+        EventModel event = eventService.getEventById(id);
         if(event != null){
-            return ResponseEntity.ok(event);
+            ArrayList<EventModel> events = new ArrayList<>();
+            events.add(event);
+            return ResponseEntity.ok(events);
         }else{
             return ResponseEntity.status(404).body(null);
         }
@@ -54,7 +57,7 @@ public class EventController {
         }
     }
 
-    @PostMapping("")
+    @PostMapping("/")
     public ResponseEntity<String> CreateEvent(@RequestBody EventModel event) {
         try{
             eventService.createEvent(event);

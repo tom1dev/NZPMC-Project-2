@@ -26,7 +26,7 @@ public class UserController {
     @Autowired
     private SignInService signInService;
 
-    @GetMapping("")
+    @GetMapping("/")
     public ResponseEntity<List<UserModel>> getAllUsers() {
         List<UserModel> users  = userService.getAllUsers();
 
