@@ -36,6 +36,7 @@ public class SignInUtil {
                 .sign(algorithm);
     }
 
+    //gets the users email which is hidden in the token
     public String  extractEmail(String token) {
 
         String key = token.substring(7).trim();
@@ -48,6 +49,7 @@ public class SignInUtil {
         }
     }
 
+    //compares a token and email address
     public boolean validateToken(String token, String email) {
         return (email.equals(extractEmail(token)));
     }

@@ -55,6 +55,8 @@ public class UserService {
 
     }
 
+
+    //returns a jwt token Upon successful Sign In
     public String signIn(String email, String password) {
         try{
             String passwordHash = signInUtil.hashPassword(password);

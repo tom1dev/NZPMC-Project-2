@@ -25,7 +25,7 @@ const CreateEvent = () => {
         }
 
         try{
-            await eventService.createEvent({name:name,location: location,date: date,description: description});
+            await eventService.createEvent({name:name,date: date,description: description});
             window.location.reload();
         }catch (error){
             console.log(error);
@@ -43,11 +43,6 @@ const CreateEvent = () => {
                 <div className={styleCreateEvent.parrameterBox}>
                     <h2 className={styleCreateEvent.parrameterTitle}>Name</h2> 
                     <input className={styleCreateEvent.parrameterInput} value={name}  onChange={(event) =>handleVariableChange(event,setName)}/>
-                </div>
-
-                <div className={styleCreateEvent.parrameterBox}>
-                    <h2 className={styleCreateEvent.parrameterTitle}>Location</h2>
-                    <input className={styleCreateEvent.parrameterInput} value={location}  onChange={(event) =>handleVariableChange(event,setLocation)}/>
                 </div>
 
                 <div className={styleCreateEvent.parrameterBox}>
