@@ -9,7 +9,7 @@ const EventDetailsPopup = ({togglePopup, event}) => {
     useEffect(() => {
         const fetchEventUserAmount = async () => {
             try {
-                const amount = await eventService.getEventUserAmount(event.id);
+                const amount = await eventService.getEventUserAmount(event.name);
                 setEventUserAmount(amount);
             } catch (error) {
                 console.log('Error fetching event user amount:', error);

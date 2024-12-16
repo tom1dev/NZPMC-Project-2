@@ -10,10 +10,15 @@ const UserDetailsPopup = ({ showPopup, togglePopup, user}) => {
 
     const getUserEvents = async () => {
         try{
-            const Eventids = await userService.getEventsByUserId(user.id);
-            const Events = await Promise.all(Eventids.map((event) => {return getEventById(event.eventId)}));
+            const Eventids = await userService.getEventsByUserId(user.email);
+            console.log(Eventids);
+    
+            let events = await Promise.all(Eventids.map(async (event) => {
+                const eventData = await getEventById(event);
+                return eventData;
+            }));
 
-            setUserEvents(Events);
+            setUserEvents(events);
 
         }catch (error){
             console.log(error);
@@ -46,7 +51,7 @@ const UserDetailsPopup = ({ showPopup, togglePopup, user}) => {
                     <h2 className={style.popupEmail}>Events:</h2>
 
                     {console.log(userEvents)}
-                    {userEvents.length === 0 && <h2 className={style.popupEmail}>No concerts attended</h2>}
+                    {userEvents.length === 0 && <h2 className={style.popupEmail}>No Events attended</h2>}
                     {userEvents.length > 0 && userEvents.map((event) => {return <EventTableEntry event={event}/>})}
 
 

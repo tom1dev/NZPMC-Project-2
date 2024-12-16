@@ -1,7 +1,6 @@
 package com.project_2.backend.services;
 
 import com.project_2.backend.models.UserModel;
-import com.project_2.backend.models.UsersEventsModel;
 import com.project_2.backend.repositories.UserRepository;
 import com.project_2.backend.util.SignInUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +13,6 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    UsersEventsService usersEventsService;
 
     @Autowired
     SignInUtil signInUtil;
@@ -40,16 +36,20 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public List<UsersEventsModel> getAllUserEventIds(String id){
-
-        return usersEventsService.getUserEventIDs(id);
+    public List<String> getAllUserEventIds(String id){
+        UserModel user = getUserById(id);
+        return user.getJoinedEvents();
     }
 
     public Boolean createUserEvent(String userId, String eventId){
 
-        if (usersEventsService.addUserEvent(userId, eventId)){
+        try {
+            UserModel user = getUserById(userId);
+            user.getJoinedEvents().add(eventId);
+
+            userRepository.save(user);
             return true;
-        }else{
+        }catch (Exception e){
             return false;
         }
 

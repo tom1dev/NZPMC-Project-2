@@ -29,8 +29,8 @@ const EventTableEntry = ({event,user,enrolled}) => {
     //enrolls the user to the event
     const handleEnroll = (e) => {
         console.log("Enroll Clicked");
-        if(user && user.id){
-            const hasEnrolled = addUserToEvent(user.id,event.id);
+        if(user && user.name){
+            const hasEnrolled = addUserToEvent(user.email,event.name);
             if(hasEnrolled){
                 setEnrolledUser(true);
             }
@@ -51,7 +51,6 @@ const EventTableEntry = ({event,user,enrolled}) => {
         
         <div className={styles.eventTableListingBox}>
             <h2 className={styles.eventName}>{event.name}</h2>
-            <h2 className={styles.eventLocation}>{event.location}</h2>
             <h2 className={styles.eventDate}>{event.date}</h2>
             <button className={styles.eventViewButton} onClick={(e) => {togglePopup(e)}}>View</button>
             {/**If the user is not logged in, show the create account button */}

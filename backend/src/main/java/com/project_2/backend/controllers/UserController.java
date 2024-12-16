@@ -1,7 +1,6 @@
 package com.project_2.backend.controllers;
 
 import com.project_2.backend.models.UserModel;
-import com.project_2.backend.models.UsersEventsModel;
 import com.project_2.backend.util.SignInUtil;
 import com.project_2.backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,8 +65,8 @@ public class UserController {
     }
 
     @GetMapping("/{id}/events")
-    public ResponseEntity<List<UsersEventsModel>> getUserEvents(@PathVariable String id) {
-        List<UsersEventsModel> usersEvents =  userService.getAllUserEventIds(id);
+    public ResponseEntity<List<String>> getUserEvents(@PathVariable String id) {
+        List<String> usersEvents =  userService.getAllUserEventIds(id);
 
         if(usersEvents != null && !usersEvents.isEmpty()) {
             return ResponseEntity.ok(usersEvents);
@@ -106,6 +105,12 @@ public class UserController {
     @PatchMapping("/{id}")
     public ResponseEntity<String> UpdateUser(@PathVariable String id, @RequestBody Map<String, Object> payload) {
         UserModel userCreated = userService.getUserById(id);
+
+        if(userCreated == null) {
+            return ResponseEntity.status(400).body(null);
+        }
+
+
         userCreated.setName(payload.get("name").toString());
 
         userCreated =  userService.updateUser(userCreated);

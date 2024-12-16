@@ -15,8 +15,8 @@ const EventDisplay = ({ user }) => {
     //fetches all the events and the user's events
     useEffect(() => {
         getAllEvents();
-        if (user && user.id) {
-            fetchUserEvents(user.id);
+        if (user && user.email) {
+            fetchUserEvents(user.email);
         }
     }, [user]);
 

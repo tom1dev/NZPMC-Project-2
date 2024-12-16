@@ -3,21 +3,24 @@ package com.project_2.backend.models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Document
 public class UserModel {
-    @Id
-    private String id;
 
+    @Id
+    private String email;
     private String name;
     private String passwordHash;
-    private String email;
+    private List<String> joinedEvents = new ArrayList<>();
 
-    public String getId() {
-        return id;
+    public List<String> getJoinedEvents() {
+        return joinedEvents;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setJoinedEvents(List<String> joinedEvents) {
+        this.joinedEvents = joinedEvents;
     }
 
     public String getName() {
