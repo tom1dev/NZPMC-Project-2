@@ -13,16 +13,10 @@ public class UsersEventsService {
     @Autowired
     private UsersEventsRepository usersEventsRepository;
 
-    public List<String> getUserEventIDs(String ID){
+    public List<UsersEventsModel> getUserEventIDs(String ID){
         List<UsersEventsModel> usersEventsModels = usersEventsRepository.findAllByUserId(ID);
 
-        //adds all event ids for a user to a list
-        List<String> usersEventIDs = new ArrayList<>();
-
-        for(UsersEventsModel usersEventsModel : usersEventsModels){
-            usersEventIDs.add(usersEventsModel.getEventId());
-        }
-        return usersEventIDs;
+        return usersEventsModels;
 
     }
 

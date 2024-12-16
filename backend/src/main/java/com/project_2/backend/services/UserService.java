@@ -1,6 +1,7 @@
 package com.project_2.backend.services;
 
 import com.project_2.backend.models.UserModel;
+import com.project_2.backend.models.UsersEventsModel;
 import com.project_2.backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,7 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public List<String> getAllUserEventIds(String id){
+    public List<UsersEventsModel> getAllUserEventIds(String id){
 
         return usersEventsService.getUserEventIDs(id);
     }

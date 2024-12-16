@@ -2,6 +2,7 @@ package com.project_2.backend.controllers;
 
 import com.project_2.backend.models.EventModel;
 import com.project_2.backend.models.UserModel;
+import com.project_2.backend.models.UsersEventsModel;
 import com.project_2.backend.services.EventService;
 import com.project_2.backend.services.SignInService;
 import com.project_2.backend.services.UserService;
@@ -68,11 +69,11 @@ public class UserController {
     }
 
     @GetMapping("/{id}/events")
-    public ResponseEntity<List<String>> getUserEvents(@PathVariable String id) {
-        List<String> eventIds =  userService.getAllUserEventIds(id);
+    public ResponseEntity<List<UsersEventsModel>> getUserEvents(@PathVariable String id) {
+        List<UsersEventsModel> usersEvents =  userService.getAllUserEventIds(id);
 
-        if(eventIds != null && !eventIds.isEmpty()) {
-            return ResponseEntity.ok(eventIds);
+        if(usersEvents != null && !usersEvents.isEmpty()) {
+            return ResponseEntity.ok(usersEvents);
         }else{
             return ResponseEntity.status(404).body(null);
         }
@@ -96,10 +97,10 @@ public class UserController {
     }
 
     @PostMapping("/{id}/events")
-    public ResponseEntity<String> CreateUserEvent(@PathVariable String id, @RequestBody String eventId) {
-        boolean hasAdded = userService.createUserEvent(id,eventId);
+    public ResponseEntity<String> CreateUserEvent(@PathVariable String id, @RequestBody Map<String, String> eventId) {
+        boolean hasAdded = userService.createUserEvent(id,eventId.get("eventId"));
         if(hasAdded){
-            return ResponseEntity.status(201).body(eventId);
+            return ResponseEntity.status(201).body(eventId.get("eventId"));
         }else{
             return ResponseEntity.status(400).body(null);
         }
