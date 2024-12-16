@@ -26,6 +26,9 @@ public class BackendApplication {
 		SpringApplication.run(BackendApplication.class, args);
 
 	}
+
+
+	//allows for quires from port 5173
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {

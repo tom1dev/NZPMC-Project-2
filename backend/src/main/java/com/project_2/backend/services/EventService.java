@@ -18,7 +18,8 @@ public class EventService {
     private UsersEventsService usersEventsService;
 
     public List<EventModel> getAllEvents(){
-        return eventRepository.findAll();
+        List<EventModel> events = eventRepository.findAll();
+        return events;
     }
 
 

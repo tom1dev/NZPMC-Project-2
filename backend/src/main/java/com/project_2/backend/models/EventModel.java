@@ -4,24 +4,16 @@ package com.project_2.backend.models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 @Document
 public class EventModel {
     @Id
-    private String id;
-
     private String name;
     private String description;
-    private String location;
-    private String date;
-
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    private Date date;
 
     public String getName() {
         return name;
@@ -39,29 +31,24 @@ public class EventModel {
         this.description = description;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public String getDate() {
-        return date;
+        if(date != null){
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String formattedDate = formatter.format(date);
+            return formattedDate;
+        } else{
+            return null;
+        }
+
     }
 
     public void setDate(String date) {
-        this.date = date;
+        try{
+            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+            this.date = formatter.parse(date);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
-
-
-
-
-
-
-
-
-
-
 }

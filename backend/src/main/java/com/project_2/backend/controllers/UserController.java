@@ -1,13 +1,10 @@
 package com.project_2.backend.controllers;
 
-import com.project_2.backend.models.EventModel;
 import com.project_2.backend.models.UserModel;
 import com.project_2.backend.models.UsersEventsModel;
-import com.project_2.backend.services.EventService;
-import com.project_2.backend.services.SignInService;
+import com.project_2.backend.util.SignInUtil;
 import com.project_2.backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.server.Cookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +21,7 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private SignInService signInService;
+    private SignInUtil signInUtil;
 
     @GetMapping("/")
     public ResponseEntity<List<UserModel>> getAllUsers() {
@@ -41,7 +38,7 @@ public class UserController {
     @GetMapping("/mydetails")
     public ResponseEntity<List<UserModel>> getUserDetails(@RequestHeader String authorization) {
         try{
-            String email = signInService.extractEmail(authorization);
+            String email = signInUtil.extractEmail(authorization);
             UserModel user = userService.getUserByEmail(email);
             List<UserModel> users = new ArrayList<>();
             users.add(user);

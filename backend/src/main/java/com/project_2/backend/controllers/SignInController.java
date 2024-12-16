@@ -1,16 +1,11 @@
 package com.project_2.backend.controllers;
 
-import com.project_2.backend.models.EventModel;
-import com.project_2.backend.services.EventService;
-import com.project_2.backend.services.SignInService;
 import com.project_2.backend.services.UserService;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController

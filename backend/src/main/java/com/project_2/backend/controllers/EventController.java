@@ -20,20 +20,23 @@ public class EventController {
 
     @GetMapping
     public ResponseEntity<List<EventModel>> getAllEvents() {
-        List<EventModel> events =  eventService.getAllEvents();
-        if(events != null){
-            return ResponseEntity.ok(events);
+        try {
+            List<EventModel> events = eventService.getAllEvents();
+            if (events != null) {
+                return ResponseEntity.ok(events);
 
-        }else{
-            return ResponseEntity.status(404).body(null);
+            } else {
+                return ResponseEntity.status(404).body(null);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(null);
         }
-
     }
 
 
-    @GetMapping("/{id}")
-    public ResponseEntity<List<EventModel>> getEventById(@PathVariable String id) {
-        EventModel event = eventService.getEventById(id);
+    @GetMapping("/{name}")
+    public ResponseEntity<List<EventModel>> getEventById(@PathVariable String name) {
+        EventModel event = eventService.getEventById(name);
         if(event != null){
             ArrayList<EventModel> events = new ArrayList<>();
             events.add(event);
@@ -60,6 +63,12 @@ public class EventController {
     @PostMapping("/")
     public ResponseEntity<String> CreateEvent(@RequestBody EventModel event) {
         try{
+            EventModel checkEvent = eventService.getEventById(event.getName());
+
+            if(checkEvent != null){
+                return ResponseEntity.status(404).body(null);
+            }
+
             eventService.createEvent(event);
             return ResponseEntity.status(201).body(null);
         } catch (Exception e) {
