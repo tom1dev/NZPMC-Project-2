@@ -14,18 +14,26 @@ const EventDisplay = ({ user }) => {
 
     //fetches all the events and the user's events
     useEffect(() => {
-        getAllEvents();
-        if (user && user.email) {
-            fetchUserEvents(user.email);
+
+        const fetchEvents = async () => {
+            await getAllEvents();
+            if (user && user.email) {
+                await fetchUserEvents(user.email);
+            }
         }
+
+        fetchEvents();
+
     }, [user]);
 
     //fetches all the event ids that the user has joined in
     const fetchUserEvents = async (userid) => {
         try {
             const userEvents = await userService.getEventsByUserId(userid);
+           
+            setUserEventsIds(userEvents);
 
-            setUserEventsIds(userEvents.map((event) => event.eventId));
+
         } catch (error) {
             console.log(error);
         }
@@ -44,12 +52,14 @@ const EventDisplay = ({ user }) => {
     //checks if the event is in the user's events
     const isUserEvent = (event) => {
 
-
-        for (let i = 0; i < userEventIds.length; i++) {
-            if (userEventIds[i] === event.id) {
-                return true;
-            }
+        console.log(userEventIds);
+        console.log(event.name);
+        
+        if(userEventIds.includes(event.name)){
+            return true;
         }
+       
+
         return false;
     }
 

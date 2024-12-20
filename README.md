@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # NZPMC-Project-2
 
 This is the first miniproject created by tdev429(tom).
@@ -89,3 +90,6 @@ PORT = {PortNum}
 JWT_SECRET = "{secret here}"
 
 3. In the 'backend ' folder, run 'npm run dev'
+=======
+# NZPMC-Project-1
+>>>>>>> main
