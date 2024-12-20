@@ -19,7 +19,7 @@ const SideBarUserDetails = ({user, setUser}) =>{
     const handleSave  = async() => { 
         console.log("Save Clicked");
         try {
-            const res = await userService.updateUser(user.id, {name: userEdittedName});
+            const res = await userService.updateUser(user.email, {name: userEdittedName});
             setUser(user => ({...user, name: userEdittedName}));
             console.log('User updated:', res);
         } catch (error) {
