@@ -10,7 +10,7 @@ import competitionService from '../../services/competitionService.js';
 
 
 const CompetitionDisplay = () => {
-    const [competitions, setcompetitions] = useState([]);
+    const [competitions, setCompetitions] = useState([]);
 
     //fetches all the events and the user's events
     useEffect(() => {
@@ -27,7 +27,7 @@ const CompetitionDisplay = () => {
     const getAllCompetitions = async () => {
         try {
             const competitions = await competitionService.getAllCompetitions();
-            setUserEventsIds(competitions);
+            setCompetitions(competitions);
 
         } catch (error) {
             console.log(error);
@@ -42,8 +42,8 @@ const CompetitionDisplay = () => {
 
             <CompetitionDetailsParramTitles/>
 
-            {competitions && competitions.length > 0 && events.map((event) => {
-                return <EventTableEntry key={event.id} event={event} user={user} />
+            {competitions && competitions.length > 0 && competitions.map((competition) => {
+                return <CompetitionTableEntry  competition={competition}/>
             })}
         </div>
 
