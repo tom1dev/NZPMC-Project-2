@@ -16,13 +16,13 @@ const CreateEvent = () => {
     //submits the created event to the database
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (!name || !date || !description) {
-            alert("Please fill out name,date and description.");
+        if (!title) {
+            alert("Please fill out the title to the event.");
             return;
         }
 
         try{
-            await eventService.createEvent({name:name,date: date,description: description});
+            //await eventService.createEvent({name:name,date: date,description: description});
             window.location.reload();
         }catch (error){
             console.log(error);
