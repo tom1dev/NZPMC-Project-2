@@ -5,6 +5,7 @@ import EventDisplay from '../components/event/EventDisplay.jsx'
 import SideBar from '../components/sideBar/SideBar.jsx';
 import UserDisplay from '../components/user/UserDisplay.jsx';
 import { useNavigate } from "react-router-dom";
+import CreateCompetition from '../components/competition/CreateCompetition.jsx';
 
 import userService from '../services/userService';
 const Admin = () => {
@@ -46,6 +47,7 @@ const Admin = () => {
             <div className={styles.landingContentContainer}>
                 <h1 className={styles.landingPageTitle}>Admin Page</h1>
                 <UserDisplay />
+                <CreateCompetition />
                 <CreateEvent />
                 <EventDisplay />
 
