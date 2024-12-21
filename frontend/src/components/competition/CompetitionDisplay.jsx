@@ -5,7 +5,7 @@ import EventTableEntry from '../event/EventTableEntry.jsx'
 
 import userService from '../../services/userService.js';
 import eventService from '../../services/eventService.js';
-import EventDetailsParramTitles from '../event/EventDetailsParramTitles.jsx';
+import CompetitionDetailsParramTitles from './CompetitionDetailsParramTitles.jsx';
 import competitionService from '../../services/competitionService.js';
 
 
@@ -40,7 +40,7 @@ const CompetitionDisplay = () => {
 
             <h2 className={styles.eventTitle}>Competitions</h2>
 
-            <EventDetailsParramTitles/>
+            <CompetitionDetailsParramTitles/>
 
             {competitions && competitions.length > 0 && events.map((event) => {
                 return <EventTableEntry key={event.id} event={event} user={user} />
