@@ -1,11 +1,10 @@
 import styles from '../../styles/Landing.module.css'
 import styleCreateEvent from '../../styles/CreateEvent.module.css';
-import { useEffect,useState } from 'react';
-import eventService from '../../services/eventService.js';
+import {useState } from 'react';
 import competitionService from '../../services/competitionService.js';
 
 
-const CreateEvent = () => {
+const CreateCompetition = () => {
     const [title,setTitle] = useState('');
     
     const handleVariableChange = (event, setter) =>{
@@ -52,4 +51,4 @@ const CreateEvent = () => {
 
 }
 
-export default CreateEvent;
+export default CreateCompetition;
