@@ -2,11 +2,11 @@ import styles from '../../styles/Landing.module.css'
 import styleCreateEvent from '../../styles/CreateEvent.module.css';
 import { useEffect,useState } from 'react';
 import eventService from '../../services/eventService.js';
+import competitionService from '../../services/competitionService.js';
 
 
 const CreateEvent = () => {
     const [title,setTitle] = useState('');
-    const [eventName,setEventName] = useState('');
     
     const handleVariableChange = (event, setter) =>{
         setter(event.target.value)
@@ -17,12 +17,12 @@ const CreateEvent = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (!title) {
-            alert("Please fill out the title to the event.");
+            alert("Please fill out the title to the competition.");
             return;
         }
 
         try{
-            //await eventService.createEvent({name:name,date: date,description: description});
+            await competitionService.createCompetition({title:title});
             window.location.reload();
         }catch (error){
             console.log(error);
@@ -36,20 +36,13 @@ const CreateEvent = () => {
             
             <form   className={styleCreateEvent.createEventContainer} onSubmit={handleSubmit}>
                 
-                
                 <div className={styleCreateEvent.parrameterBox}>
                     <h2 className={styleCreateEvent.parrameterTitle}>Title*</h2> 
                     <input className={styleCreateEvent.parrameterInput} value={title}  onChange={(event) =>handleVariableChange(event,setTitle)}/>
                 </div>
 
-                <div className={styleCreateEvent.parrameterBox}>
-                    <h2 className={styleCreateEvent.parrameterTitle}>Link to Event</h2>
-                    <input className={styleCreateEvent.parrameterInput} value={eventName}  onChange={(event) =>handleVariableChange(event,setEventName)}/>
-                </div>
-
                 <button type="submit" className={styleCreateEvent.eventSubmitButton} >Create Competition</button>
                 
-
 
             </form>
 

@@ -20,3 +20,4 @@ const addQuestionToCompetition = async (competitionTitle, question) => {
     return null;
 }
 
+export default {getAllCompetitions, getCompetitionByTitle, createCompetition, addEventToCompetition, addQuestionToCompetition};
