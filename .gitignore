@@ -29,3 +29,4 @@ dist-ssr
 #backend Dependencies
 /backend/node_modules
 /backend/.env
+/backend/target
