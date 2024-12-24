@@ -20,37 +20,56 @@ public class CompetitionController {
     @GetMapping("")
     public ResponseEntity<List<CompetitionModel>> getAllCompetitions (){
 
-        return null;
+        List<CompetitionModel> competitions = competitionService.getAllCompetitions();
 
+        if(competitions.isEmpty()){
+            return ResponseEntity.status(404).build();
+        }
+
+        return ResponseEntity.ok(competitions);
     }
 
     @GetMapping("/{title}")
     public ResponseEntity<CompetitionModel> getCompetitionByTitle(@PathVariable String title){
-        return null;
+
+        CompetitionModel competition = competitionService.getCompetitionByTitle(title);
+        if(competition == null){
+            return ResponseEntity.status(404).build();
+        }
+        return ResponseEntity.ok(competition);
+
+
+
     }
 
     @PostMapping("")
-    public ResponseEntity<CompetitionModel> addCompetition(@RequestBody CompetitionModel competition){
-        return null;
+    public ResponseEntity<String> addCompetition(@RequestBody CompetitionModel competition){
+        try{
+            competitionService.createCompetition(competition);
+            return ResponseEntity.status(201).build();
+        }catch(Exception e){
+            return ResponseEntity.status(500).build();
+        }
     }
 
     @PostMapping("/{competition}/events")
     public ResponseEntity<CompetitionModel> addCompetitionToEvent(@PathVariable String competition, @RequestBody String eventName){
-        return null;
+        try{
+            competitionService.addEventToCompetition(competition, eventName);
+            return ResponseEntity.status(201).build();
+        } catch (Exception e) {
+            return ResponseEntity.status(500).build();
+        }
     }
 
     @PostMapping("/{competition}/question")
     public ResponseEntity<CompetitionModel> addQuestionToCompetition(@PathVariable String competition, @RequestBody QuestionModel question){
-        return null;
+        try{
+            competitionService.addQuestionToCompetition(competition, question);
+            return ResponseEntity.status(201).build();
+        }catch(Exception e){
+            return ResponseEntity.status(500).build();
+        }
     }
-
-
-
-
-
-
-
-
-
 
 }
