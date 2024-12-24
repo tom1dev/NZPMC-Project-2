@@ -34,6 +34,8 @@ const SideBar = ({user, setUser}) => {
         <div className={styles.sidebarContainer}>
 
             <h1 className={styles.logo}>NZPMC</h1>
+            
+            {/*show login or sign in button*/}
             {   isLoggedIn ?
                 <>
                     <SideBarUserDetails  user = {user} setUser ={setUser}/>
@@ -42,6 +44,9 @@ const SideBar = ({user, setUser}) => {
                 </>
                 :<Link className={styles.signIn} to='../signin'>Sign in</Link>
             }
+
+
+
         </div>
     );
 }

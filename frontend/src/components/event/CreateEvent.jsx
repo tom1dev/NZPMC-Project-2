@@ -6,7 +6,6 @@ import eventService from '../../services/eventService.js';
 
 const CreateEvent = () => {
     const [name,setName] = useState('');
-    const [location,setLocation] = useState('');
     const [date,setDate] = useState('');
     const [description,setDescription] = useState('');
 
