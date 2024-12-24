@@ -1,11 +1,11 @@
 
 import styles from '../../styles/Landing.module.css'
 import { useEffect, useState } from 'react';
-import EventTableEntry from '../event/EventTableEntry.jsx'
 
 import userService from '../../services/userService.js';
 import eventService from '../../services/eventService.js';
 import CompetitionDetailsParramTitles from './CompetitionDetailsParramTitles.jsx';
+import CompetitionTableEntry from './CompetitionTableEntry.jsx';
 import competitionService from '../../services/competitionService.js';
 
 
