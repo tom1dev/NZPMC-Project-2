@@ -1,6 +1,7 @@
 package com.project_2.backend.services;
 
 import com.project_2.backend.models.CompetitionModel;
+import com.project_2.backend.models.EventModel;
 import com.project_2.backend.models.QuestionModel;
 import com.project_2.backend.repositories.CompetitionRepository;
 import com.project_2.backend.repositories.EventRepository;
@@ -8,6 +9,9 @@ import com.project_2.backend.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -16,29 +20,59 @@ public class CompetitionService {
     private CompetitionRepository competitionRepository;
 
     @Autowired
-    private EventRepository eventRepository;
+    private EventService eventService;
 
     @Autowired
     private QuestionRepository questionRepository;
 
     public List<CompetitionModel> getAllCompetitions() {
-        return null;
+
+
+        return competitionRepository.findAll();
     }
 
-    public CompetitionModel getCompetitionByTitle(String Title) {
-        return null;
+    public CompetitionModel getCompetitionByTitle(String title) {
+        return competitionRepository.findById(title).orElse(null);
     }
 
-    public CompetitionModel createCompetition(){
-        return null;
+    public CompetitionModel createCompetition(CompetitionModel competitionModel){
+        return competitionRepository.save(competitionModel);
     }
 
     public Boolean addEventToCompetition(String competitionName, String eventName) {
-        return null;
+        CompetitionModel competition = getCompetitionByTitle(competitionName);
+        EventModel event =  eventService.getEventById(eventName);
+
+        if (event == null || competition == null) {
+            return false;
+        }
+
+        //sets the competition in the event
+        event.setCompetitionTitle(competitionName);
+        return true;
+
     }
 
     public Boolean addQuestionToCompetition(String competitionName, QuestionModel question) {
-        return null;
+
+        //saving question if it already exists do not save
+
+        QuestionModel currentQuestion = questionRepository.findById(question.getTitle()).orElse(null);
+        if (currentQuestion != null) {
+            return false;
+        }
+
+        questionRepository.save(question);
+
+        //adding question to competition
+        CompetitionModel competition = getCompetitionByTitle(competitionName);
+
+        String[] currentQuestions  = Arrays.copyOf(competition.getQuestionIds(), competition.getQuestionIds().length+1);
+
+        currentQuestions[currentQuestions.length-1] = question.getTitle();
+
+
+        return true;
     }
 
 
