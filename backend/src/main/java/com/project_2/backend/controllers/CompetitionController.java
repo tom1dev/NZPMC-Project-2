@@ -62,7 +62,7 @@ public class CompetitionController {
         }
     }
 
-    @PostMapping("/{competition}/question")
+    @PostMapping("/{competition}/questions")
     public ResponseEntity<CompetitionModel> addQuestionToCompetition(@PathVariable String competition, @RequestBody QuestionModel question){
         try{
             competitionService.addQuestionToCompetition(competition, question);
