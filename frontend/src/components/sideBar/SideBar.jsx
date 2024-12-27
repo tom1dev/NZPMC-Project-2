@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import cookieService from '../../services/cookieService.js';
 import SideBarUserDetails from './SideBarUserDetails.jsx';
+import ButtonContainer from './ButtonContainer.jsx';
 
 
 const SideBar = ({user, setUser}) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isAdmin,setIsAdmin] = useState(false);
 
 
 
@@ -18,6 +20,11 @@ const SideBar = ({user, setUser}) => {
             setIsLoggedIn(false); 
         } else {
             setIsLoggedIn(true); 
+
+            if(user.name === 'admin'){
+                setIsAdmin(true);
+            }
+
         }
     }, [user]); 
 
@@ -43,7 +50,11 @@ const SideBar = ({user, setUser}) => {
                     <button className={styles.signIn} onClick={(e) => {handelSignout()}}>Signout</button>
                 </>
                 :<Link className={styles.signIn} to='../signin'>Sign in</Link>
+
+                
+
             }
+            <ButtonContainer isAdmin={isAdmin} isLoggedIn={isLoggedIn}/>
 
 
 
