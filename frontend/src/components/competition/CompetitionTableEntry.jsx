@@ -29,7 +29,7 @@ const CompetitionTableEntry = ({competition}) => {
 
             {
                 questionPopupOpen &&
-                <AddQuestionPopup setQuestionPopupOpen= {setQuestionPopupOpen}/>
+                <AddQuestionPopup setQuestionPopupOpen= {setQuestionPopupOpen} competition ={competition}/>
 
             }
 
