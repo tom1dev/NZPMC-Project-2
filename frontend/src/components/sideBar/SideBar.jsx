@@ -54,7 +54,6 @@ const SideBar = ({user, setUser}) => {
                 
 
             }
-            <ButtonContainer isAdmin={isAdmin} isLoggedIn={isLoggedIn}/>
 
 
 
