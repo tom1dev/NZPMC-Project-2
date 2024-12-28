@@ -4,7 +4,7 @@ import { useEffect,useState } from 'react';
 import competitionService from '../../services/competitionService';
 
 
-const CreateQuestion = (competition) => {
+const CreateQuestion = ({competition}) => {
     const [title,settitle] = useState('');
     const [answer1,setAnswer1] = useState('');
     const [answer2,setAnswer2] = useState('');
@@ -35,7 +35,6 @@ const CreateQuestion = (competition) => {
                 answer4],
                 correctAnswer:correctAnswer-1
             }
-
 
             await competitionService.addQuestionToCompetition(competition.title,question);
             alert("Question added");

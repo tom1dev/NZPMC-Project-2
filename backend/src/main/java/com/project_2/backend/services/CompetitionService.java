@@ -67,9 +67,19 @@ public class CompetitionService {
         //adding question to competition
         CompetitionModel competition = getCompetitionByTitle(competitionName);
 
-        String[] currentQuestions  = Arrays.copyOf(competition.getQuestionIds(), competition.getQuestionIds().length+1);
+        int length = 1;
+        String[] currentQuestions;
+        if(competition.getQuestionIds() != null) {
+            length += competition.getQuestionIds().length;
+            currentQuestions  = Arrays.copyOf(competition.getQuestionIds(), length);
+            currentQuestions[currentQuestions.length-1] = question.getTitle();
+        }else{
+            currentQuestions = new String[1];
+            currentQuestions[0] = question.getTitle();
+        }
 
-        currentQuestions[currentQuestions.length-1] = question.getTitle();
+        competition.setQuestionIds(currentQuestions);
+        competitionRepository.save(competition);
 
 
         return true;
