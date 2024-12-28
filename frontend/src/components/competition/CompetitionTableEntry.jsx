@@ -2,7 +2,7 @@ import styles from '../../styles/Landing.module.css'
 import {useState,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import AddQuestionPopup from '../question/addQuestionPopup.jsx';
-
+import CompetitionDetailsPopup from './CompetitionDetailsPopup.jsx';
 
 const CompetitionTableEntry = ({competition}) => {
     const [viewPopupOpen, setViewPopupOpen] = useState(false);
@@ -31,6 +31,11 @@ const CompetitionTableEntry = ({competition}) => {
                 questionPopupOpen &&
                 <AddQuestionPopup setQuestionPopupOpen= {setQuestionPopupOpen} competition ={competition}/>
 
+            }
+
+            {
+                viewPopupOpen &&
+                <CompetitionDetailsPopup setViewPopupOpen= {setViewPopupOpen} competition ={competition}/>
             }
 
     </>
