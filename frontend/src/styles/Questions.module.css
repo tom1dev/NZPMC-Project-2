@@ -1,0 +1,16 @@
+.questionsContainer{
+    display:block;
+    width:100%;
+    border:none;
+}
+
+.questionContainer{
+    display: block; /* Use flex instead of inline-flex */
+    justify-content: start;
+    padding: 10px;
+    border: 1px solid black;
+}
+.questionParram{
+    color:black;
+    font-size:20px;
+}

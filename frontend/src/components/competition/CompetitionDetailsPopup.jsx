@@ -46,7 +46,7 @@ const CompetitionDetailsPopup = ({setViewPopupOpen, competition}) => {
                             hi
                         </Dropdown>
                         <Dropdown DropdownTitle="Questions">
-                            <QuestionDisplay competition={competition}/>
+                            <QuestionDisplay questions={questions}/>
                         </Dropdown>    
                     </div>             
 

@@ -9,6 +9,8 @@
     max-width: 80vw;
     background-color: #ffffff;
     border:#7f7f7f  solid  3px;
+    overflow-y: scroll;
+    max-height: 95vh;
     
     
     left: 0;
@@ -28,14 +30,10 @@
 }
 
 .popupParram{
-    display: flex;
-    flex-direction: row;
     padding: 1vh;
     margin: 0 auto;
-    border-radius: 20px; 
-    overflow: auto;  
     width: 96%;   
-    height: inherit;
+    height: fit-content;
     color:black;
     text-align: start;
 
