@@ -3,6 +3,7 @@ import style from '../../styles/UserPopup.module.css';
 import {useState,useEffect} from 'react';
 import Dropdown from '../misc/Dropdown.jsx';
 import eventService from '../../services/eventService.js';
+import QuestionDisplay from '../question/QuestionDisplay.jsx';
 
 const CompetitionDetailsPopup = ({setViewPopupOpen, competition}) => {
     const [questionAmount, setQuestionAmount] = useState(0);
@@ -41,7 +42,7 @@ const CompetitionDetailsPopup = ({setViewPopupOpen, competition}) => {
                             hi
                         </Dropdown>
                         <Dropdown DropdownTitle="Questions">
-                            yo
+                            <QuestionDisplay competition={competition}/>
                         </Dropdown>    
                     </div>             
 

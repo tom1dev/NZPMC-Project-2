@@ -65,10 +65,23 @@ public class CompetitionController {
     @PostMapping("/{competition}/questions")
     public ResponseEntity<CompetitionModel> addQuestionToCompetition(@PathVariable String competition, @RequestBody QuestionModel question){
         try{
-            competitionService.addQuestionToCompetition(competition, question);
+            Boolean isCreated = competitionService.addQuestionToCompetition(competition, question);
+            if(!isCreated){
+                return ResponseEntity.status(500).build();
+            }
             return ResponseEntity.status(201).build();
         }catch(Exception e){
             return ResponseEntity.status(500).build();
+        }
+    }
+
+    @GetMapping("/{competition}/questions")
+    public ResponseEntity<List<QuestionModel>> getQuestionsByCompetition(@PathVariable String competition){
+        List<QuestionModel> questions = competitionService.getQuestions(competition);
+        if(questions.isEmpty()){
+            return ResponseEntity.status(404).build();
+        }else{
+            return ResponseEntity.ok(questions);
         }
     }
 

@@ -1,4 +1,4 @@
-const QuestionDisplay = ({  }) => {
+const QuestionDisplay = ({competition}) => {
     return (
         <div>
             <h1>Question Display</h1>
