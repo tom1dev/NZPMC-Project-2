@@ -54,12 +54,6 @@ const Admin = () => {
             </div>
             <div className={styles.landingContentContainer}>
                 <h1 className={styles.landingPageTitle}>Admin Page</h1>
-                <Dropdown DropdownTitle  = {"DropDownTest"} >
-                    <div>
-                        <h1>Test</h1>
-                    </div>
-
-                </Dropdown>
                 <UserDisplay />
                 <CreateCompetition />
                 <CompetitionDisplay />

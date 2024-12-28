@@ -40,3 +40,10 @@
     text-align: start;
 
 }
+.dropdownContainer{
+    position: relative;
+    display:block;
+    margin:auto;
+    width: 90%;
+    margin-right: 4vw;
+}

@@ -1,6 +1,7 @@
 
 import style from '../../styles/UserPopup.module.css';
 import {useState,useEffect} from 'react';
+import Dropdown from '../misc/Dropdown.jsx';
 import eventService from '../../services/eventService.js';
 
 const CompetitionDetailsPopup = ({setViewPopupOpen, competition}) => {
@@ -35,8 +36,14 @@ const CompetitionDetailsPopup = ({setViewPopupOpen, competition}) => {
                     <h2 className={style.popupParram}>Name : {competition.title}</h2>
                     <h2 className={style.popupParram}>Number Of Questions: {questionAmount}</h2>
                     <h2 className={style.popupParram}>Number of Events for Competition:</h2>
-                    <h2 className={style.popupParram}>Questions {}</h2>
-                    <h2 className={style.popupParram}>Events for Competition</h2>                   
+                    <div className={style.dropdownContainer}>
+                        <Dropdown DropdownTitle="Events">
+                            hi
+                        </Dropdown>
+                        <Dropdown DropdownTitle="Questions">
+                            yo
+                        </Dropdown>    
+                    </div>             
 
                     <button className={style.popupCloseButton} onClick={(e) => setViewPopupOpen(false)}>Close</button>
             </div>
