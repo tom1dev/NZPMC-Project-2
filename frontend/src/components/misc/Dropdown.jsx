@@ -6,7 +6,6 @@ const Dropdown = ({children , DropdownTitle}) => {
     const [isDropped, setIsDropped] = useState(false);
 
     const toggleDropdown = () => {
-        console.log(children);
         setIsDropped(!isDropped);
     }
 

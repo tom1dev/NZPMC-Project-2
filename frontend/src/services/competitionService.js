@@ -53,4 +53,13 @@ const addQuestionToCompetition = async (competitionTitle, question) => {
     }
 }
 
-export default {getAllCompetitions, getCompetitionByTitle, createCompetition, addEventToCompetition, addQuestionToCompetition};
+const getQuestionsForCompetition = async (competitionTitle) => {
+    const res =  await axios.get(`http://localhost:3001/api/competition/${competitionTitle}/questions`,{headers: {'authorization': cookieService.getCookie("token")}});
+    if(res.status === 200){
+        return res.data;
+    }else{
+        throw new Error(res.data.message);
+    }
+}
+
+export default {getAllCompetitions, getCompetitionByTitle, createCompetition, addEventToCompetition, addQuestionToCompetition,getQuestionsForCompetition};

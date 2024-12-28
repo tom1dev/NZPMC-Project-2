@@ -4,27 +4,31 @@ import {useState,useEffect} from 'react';
 import Dropdown from '../misc/Dropdown.jsx';
 import eventService from '../../services/eventService.js';
 import QuestionDisplay from '../question/QuestionDisplay.jsx';
+import competitionService from '../../services/competitionService.js';
 
 const CompetitionDetailsPopup = ({setViewPopupOpen, competition}) => {
     const [questionAmount, setQuestionAmount] = useState(0);
+    const [questions, setQuestions] = useState([]);
 
     //gets the amount of users that have joined the event apon loading
     useEffect(() => {
         const fetchEventUserAmount = async () => {
             try {
-                if(competition.questionIds){
-                    setQuestionAmount(competition.questionIds.length);
-                }else{
-                    setQuestionAmount(0);
-                }
-               console.log(competition);
+                const gottenQuestions = await competitionService.getQuestionsForCompetition(competition.title);
+                setQuestions(gottenQuestions);
+
+
             } catch (error) {
                 console.log('Error fetching event user amount:', error);
             }
         };
 
         fetchEventUserAmount();
-            
+        if(competition.questionIds){
+            setQuestionAmount(competition.questionIds.length);
+        }else{
+            setQuestionAmount(0);
+        }
     },[]);
 
 
