@@ -1,5 +1,5 @@
 import styles from '../styles/Landing.module.css'
-import { useEffect, useState } from 'react';
+import { createContext,useEffect, useState } from 'react';
 import CreateEvent from '../components/event/CreateEvent.jsx';
 import EventDisplay from '../components/event/EventDisplay.jsx'
 import SideBar from '../components/sideBar/SideBar.jsx';
@@ -14,6 +14,7 @@ const Admin = () => {
     const navigate = useNavigate();
 
     const [user, setUser] = useState();
+    
     
 
     //gets user information with its auth cookie and verifies user page access

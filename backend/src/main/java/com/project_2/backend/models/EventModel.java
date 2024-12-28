@@ -14,6 +14,15 @@ public class EventModel {
     private String name;
     private String description;
     private Date date;
+    private String CompetitionTitle;
+
+    public String getCompetitionTitle() {
+        return CompetitionTitle;
+    }
+
+    public void setCompetitionTitle(String competitionTitle) {
+        CompetitionTitle = competitionTitle;
+    }
 
     public String getName() {
         return name;

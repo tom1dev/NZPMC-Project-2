@@ -1,26 +1,42 @@
 import styles from '../../styles/Landing.module.css'
 import {useState,useEffect} from 'react';
-import userService from '../../services/userService.js';
-import EventDetailsPopup from './EventDetailsPopup.jsx';
 import { useNavigate } from 'react-router-dom';
+import AddQuestionPopup from '../question/addQuestionPopup.jsx';
 
 
 const CompetitionTableEntry = ({competition}) => {
-    const [popupOpen, setPopupOpen] = useState(false);
+    const [viewPopupOpen, setViewPopupOpen] = useState(false);
+    const [questionPopupOpen, setQuestionPopupOpen] = useState(false);
 
     //enrolls the user to the event
-    const togglePopup = () => {
+    const togglePopup = (val, setter) => {
         console.log("togglePopup Clicked");
-        setPopupOpen(!popupOpen);
+        setter(!val);
     }
 
 
+
     return (
-        <div className={styles.eventTableListingBox}>
-            <h2 className={styles.eventName}>{competition.name}</h2>
-            <h2 className={styles.eventDate}>{competition.QuestionIds.size()}</h2>
-            <button className={styles.eventViewButton} onClick={(e) => {togglePopup(e)}}>View</button>
-        </div>
+    <>
+
+            <div className={styles.eventTableListingBox}>
+                <h2 className={styles.eventName}>{competition.title}</h2>
+                <h2 className={styles.eventDate}>{competition.QuestionIds?competition.QuestionIds.size():0 }</h2>
+
+                <button className={styles.eventViewButton} onClick={(e) => {togglePopup(questionPopupOpen,setQuestionPopupOpen)}}>AddQuestion</button>
+                <button className={styles.eventViewButton} onClick={(e) => {togglePopup(viewPopupOpen,setViewPopupOpen)}}>View</button>
+            </div>
+
+            {
+                questionPopupOpen &&
+                <AddQuestionPopup setQuestionPopupOpen= {setQuestionPopupOpen} competition ={competition}/>
+
+            }
+
+    </>
+
+
+
     );
 
 

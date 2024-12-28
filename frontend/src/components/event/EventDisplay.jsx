@@ -50,11 +50,7 @@ const EventDisplay = ({ user }) => {
     }
 
     //checks if the event is in the user's events
-    const isUserEvent = (event) => {
-
-        console.log(userEventIds);
-        console.log(event.name);
-        
+    const isUserEvent = (event) => {        
         if(userEventIds.includes(event.name)){
             return true;
         }
