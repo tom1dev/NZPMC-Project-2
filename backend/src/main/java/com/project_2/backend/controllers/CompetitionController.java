@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @RestController
@@ -55,7 +57,7 @@ public class CompetitionController {
     @PostMapping("/{competition}/events")
     public ResponseEntity<CompetitionModel> addCompetitionToEvent(@PathVariable String competition, @RequestBody String eventName){
         try{
-            String eventClean =  eventName.substring(0, eventName.length()-1).replaceAll(" ", " ");
+            String eventClean =  URLDecoder.decode(eventName, StandardCharsets.UTF_8).substring(0, eventName.length()-1);
             competitionService.addEventToCompetition(competition, eventClean);
             return ResponseEntity.status(201).build();
         } catch (Exception e) {

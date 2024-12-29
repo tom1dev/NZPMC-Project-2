@@ -46,6 +46,8 @@ public class CompetitionService {
 
         //sets the competition in the event
         event.setCompetitionTitle(competitionName);
+        eventService.createEvent(event);
+
         return true;
 
     }
