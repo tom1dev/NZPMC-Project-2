@@ -3,11 +3,14 @@ import {useState,useEffect} from 'react';
 import userService from '../../services/userService.js';
 import EventDetailsPopup from './EventDetailsPopup.jsx';
 import { useNavigate } from 'react-router-dom';
+import CompetitionEventLinkPopup from '../competition/CompetitionEventLinkPopup.jsx';
 
 
 const EventTableEntry = ({event,user,enrolled}) => {
     const [enrolledUser,setEnrolledUser] = useState(false);
     const [popupOpen, setPopupOpen] = useState(false);
+    const [isCompetitionPopup, setIsCompetitionPopup] =  useState(false);
+
     
     const navigate = useNavigate();
 
@@ -42,6 +45,10 @@ const EventTableEntry = ({event,user,enrolled}) => {
         setPopupOpen(!popupOpen);
     }
 
+    const toggleCompetitionPopup = () => {
+        setIsCompetitionPopup(!isCompetitionPopup);
+    }
+
     const handleSignUp = (e) => {
         navigate('/signin');
     }
@@ -53,6 +60,8 @@ const EventTableEntry = ({event,user,enrolled}) => {
             <h2 className={styles.eventName}>{event.name}</h2>
             <h2 className={styles.eventDate}>{event.date}</h2>
             <button className={styles.eventViewButton} onClick={(e) => {togglePopup(e)}}>View</button>
+            <button className={styles.eventViewButton} onClick={(e) => {toggleCompetitionPopup(e)}}>Add Competition</button>
+
             {/**If the user is not logged in, show the create account button */}
             {user && user.length === 0 && <button className={styles.eventSignInButton} onClick={(e) =>{handleSignUp(e)}}>Create Account</button>}
 
@@ -64,6 +73,7 @@ const EventTableEntry = ({event,user,enrolled}) => {
 
             {/** displays the popup for the current event**/}
             {popupOpen && <EventDetailsPopup togglePopup={togglePopup} event={event}/>}
+            {!event.CompetitionTitle && isCompetitionPopup && <CompetitionEventLinkPopup togglePopup ={toggleCompetitionPopup} event={event}/>}
         </div>
     );
 

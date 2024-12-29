@@ -36,6 +36,7 @@ const createCompetition = async (competition) => {
 }
 
 const addEventToCompetition = async (competitionTitle, eventName) => {
+    console.log(eventName)
     const res =  await axios.post(`http://localhost:3001/api/competition/${competitionTitle}/events`,eventName,{headers: {'authorization': cookieService.getCookie("token")}});
     if(res.status === 201){
         return res.data;

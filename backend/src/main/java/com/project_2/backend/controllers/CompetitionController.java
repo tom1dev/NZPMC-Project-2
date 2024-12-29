@@ -55,7 +55,8 @@ public class CompetitionController {
     @PostMapping("/{competition}/events")
     public ResponseEntity<CompetitionModel> addCompetitionToEvent(@PathVariable String competition, @RequestBody String eventName){
         try{
-            competitionService.addEventToCompetition(competition, eventName);
+            String eventClean =  eventName.substring(0, eventName.length()-1).replaceAll(" ", " ");
+            competitionService.addEventToCompetition(competition, eventClean);
             return ResponseEntity.status(201).build();
         } catch (Exception e) {
             return ResponseEntity.status(500).build();

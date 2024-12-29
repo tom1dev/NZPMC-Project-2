@@ -98,7 +98,7 @@ public class CompetitionService {
         }
 
 
-        console.log(questions);        return questions;
+        return questions;
     }
 
 
