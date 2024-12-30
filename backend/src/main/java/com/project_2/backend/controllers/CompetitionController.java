@@ -4,6 +4,7 @@ package com.project_2.backend.controllers;
 import com.project_2.backend.models.CompetitionModel;
 import com.project_2.backend.models.QuestionModel;
 import com.project_2.backend.services.CompetitionService;
+import com.project_2.backend.util.SignInUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import com.project_2.backend.util.SignInUtil;
 
 @RestController
 @RequestMapping("/api/competition")
@@ -19,10 +21,20 @@ public class CompetitionController {
     @Autowired
     private CompetitionService competitionService;
 
-    @GetMapping("")
-    public ResponseEntity<List<CompetitionModel>> getAllCompetitions (){
+    @Autowired
+    private SignInUtil signInUtil;
 
-        List<CompetitionModel> competitions = competitionService.getAllCompetitions();
+    @GetMapping("")
+    public ResponseEntity<List<CompetitionModel>> getAllCompetitions (@RequestHeader String authorization){
+        String email = signInUtil.extractEmail(authorization);
+        List<CompetitionModel> competitions;
+        if(email.equals("admin")){
+            competitions = competitionService.getAllCompetitions();
+        }else{
+            competitions = competitionService.getAllCompetitionsWithEvent();
+        }
+
+
 
         if(competitions.isEmpty()){
             return ResponseEntity.status(404).build();

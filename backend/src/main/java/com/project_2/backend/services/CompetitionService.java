@@ -28,6 +28,22 @@ public class CompetitionService {
         return competitionRepository.findAll();
     }
 
+    public List<CompetitionModel> getAllCompetitionsWithEvent() {
+        List<EventModel> events = eventService.getAllEventsWithACompetition();
+        List<CompetitionModel> competitions = new ArrayList<CompetitionModel>();
+
+        for(EventModel event : events) {
+            CompetitionModel competition = getCompetitionByTitle(event.getCompetitionTitle());
+
+            if(competition != null) {
+                competitions.add(competition);
+            }
+        }
+
+
+        return competitions;
+    }
+
     public CompetitionModel getCompetitionByTitle(String title) {
         return competitionRepository.findById(title).orElse(null);
     }
