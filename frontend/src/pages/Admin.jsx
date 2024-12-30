@@ -38,14 +38,6 @@ const Admin = () => {
         fetchUserInformation();
     }, []);
 
-    const Child = () =>{
-        return (
-            <div>
-                <h1>Test</h1>
-            </div>
-        )
-    };
-
 
     return (
         <div className={styles.landingPageContainer}>
