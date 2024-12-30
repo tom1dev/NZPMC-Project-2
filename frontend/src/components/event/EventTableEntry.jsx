@@ -83,7 +83,7 @@ const EventTableEntry = ({event,user,enrolled}) => {
             <h2 className={styles.eventName}>{event.name}</h2>
             <h2 className={styles.eventDate}>{event.date}</h2>
             <button className={styles.eventViewButton} onClick={(e) => {togglePopup(e)}}>View</button>
-            {!user && <button className={styles.eventViewButton} onClick={(e) => {toggleCompetitionPopup(e)}}>Add Competition</button>}
+            {!user && !competition && <button className={styles.eventViewButton} onClick={(e) => {toggleCompetitionPopup(e)}}>Add Competition</button>}
             {user && competition && <button className={styles.eventViewButton} onClick={(e) => {toggleCompetitionViewPopuup(e)}}>View Competition</button>}
             {console.log(user)}
             {/**If the user is not logged in, show the create account button */}
