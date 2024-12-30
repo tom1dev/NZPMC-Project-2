@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Optional;
+
 import com.project_2.backend.util.SignInUtil;
 
 @RestController
@@ -25,10 +27,15 @@ public class CompetitionController {
     private SignInUtil signInUtil;
 
     @GetMapping("")
-    public ResponseEntity<List<CompetitionModel>> getAllCompetitions (@RequestHeader String authorization){
-        String email = signInUtil.extractEmail(authorization);
+    public ResponseEntity<List<CompetitionModel>> getAllCompetitions (@RequestHeader Optional<String> authorization){
+        String email = null;
+
+        if(authorization.isPresent()){
+            email = signInUtil.extractEmail(authorization.get());
+        }
+
         List<CompetitionModel> competitions;
-        if(email.equals("admin")){
+        if(email != null && email.equals("admin")){
             competitions = competitionService.getAllCompetitions();
         }else{
             competitions = competitionService.getAllCompetitionsWithEvent();

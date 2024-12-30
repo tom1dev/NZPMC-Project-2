@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import LoggedOutNotification from '../components/signIn/loggedOutNotification.jsx'
 import EventDisplay from '../components/event/EventDisplay.jsx'
 import SideBar from '../components/sideBar/SideBar.jsx';
-
+import CompetitionDisplay from '../components/competition/CompetitionDisplay.jsx';
 import userService from '../services/userService';
 
 
@@ -39,7 +39,7 @@ const Landing = () => {
                 
                 {/*if user is not logged in, display a notification*/}
                 {!user.name && <LoggedOutNotification />}
-                
+                <CompetitionDisplay/>
                 <EventDisplay user={user} />
             </div>
         </div>

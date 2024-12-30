@@ -31,12 +31,14 @@ public class CompetitionService {
     public List<CompetitionModel> getAllCompetitionsWithEvent() {
         List<EventModel> events = eventService.getAllEventsWithACompetition();
         List<CompetitionModel> competitions = new ArrayList<CompetitionModel>();
+        HashSet<String> competitionIds = new HashSet<String>();
 
         for(EventModel event : events) {
             CompetitionModel competition = getCompetitionByTitle(event.getCompetitionTitle());
 
-            if(competition != null) {
+            if(competition != null && !competitionIds.contains(competition.getTitle())) {
                 competitions.add(competition);
+                competitionIds.add(competition.getTitle());
             }
         }
 

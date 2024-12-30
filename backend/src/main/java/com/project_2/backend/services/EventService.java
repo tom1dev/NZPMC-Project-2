@@ -34,7 +34,7 @@ public class EventService {
     }
 
     public List<EventModel> getAllEventsWithACompetition(){
-        List<EventModel> events = eventRepository.findByCompetitionTitleIsNotNull();
+        List<EventModel> events = eventRepository.findAllByCompetitionTitleIsNotNull();
         return events;
     }
 
