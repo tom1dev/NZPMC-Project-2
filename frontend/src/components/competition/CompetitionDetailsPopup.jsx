@@ -64,11 +64,8 @@ const CompetitionDetailsPopup = ({setViewPopupOpen, competition}) => {
                     }   
 
                     {
-                        
-                    }
-                    {
                     user&& user.name !== "admin"&&
-                            <CompetitionFillout/>
+                            <CompetitionFillout competition = {competition}/>
                     }
 
            
