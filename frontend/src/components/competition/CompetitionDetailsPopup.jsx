@@ -4,6 +4,7 @@ import Dropdown from '../misc/Dropdown.jsx';
 import eventService from '../../services/eventService.js';
 import userService from '../../services/userService.js';
 import QuestionDisplay from '../question/QuestionDisplay.jsx';
+import CompetitionFillout from './CompetitionFillout.jsx';
 import competitionService from '../../services/competitionService.js';
 
 const CompetitionDetailsPopup = ({setViewPopupOpen, competition}) => {
@@ -64,6 +65,10 @@ const CompetitionDetailsPopup = ({setViewPopupOpen, competition}) => {
 
                     {
                         
+                    }
+                    {
+                    user&& user.name !== "admin"&&
+                            <CompetitionFillout/>
                     }
 
            
