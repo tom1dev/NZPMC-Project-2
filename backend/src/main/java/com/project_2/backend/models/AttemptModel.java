@@ -8,7 +8,7 @@ import java.util.Map;
 @Document
 public class AttemptModel {
 
-    private String StudentEmail;
+    private String studentEmail;
 
     private String competitionId;
 
@@ -16,11 +16,11 @@ public class AttemptModel {
 
 
     public String getStudentEmail() {
-        return StudentEmail;
+        return studentEmail;
     }
 
     public void setStudentEmail(String studentEmail) {
-        StudentEmail = studentEmail;
+        this.studentEmail = studentEmail;
     }
 
     public String getCompetitionId() {

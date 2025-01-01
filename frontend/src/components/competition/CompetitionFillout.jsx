@@ -3,7 +3,8 @@ import style from "../../styles/competitionAnswering.module.css"
 import { useEffect,useState } from "react";
 import AnswerInput from "./AnswerInput";
 import competitionService from "../../services/competitionService";
-
+import userService from "../../services/userService";
+import attemptService from "../../services/attemptService";
 
 const CompetitionFillout = ({competition}) =>{
     const[questions,setQuestions] = useState();
@@ -35,8 +36,18 @@ const CompetitionFillout = ({competition}) =>{
         setStarted(!started)
     }
 
-    const handleSubmit = () =>{
-
+    const handleSubmit = async () =>{
+        try{
+            const user =  await userService.getUserByToken();
+            console.log(map)
+            attemptService.addAttempt({
+                studentEmail: user[0].email,
+                competitionId: competition.title,
+                attempts: Object.fromEntries(map)})
+        }catch (error) {
+            console.log('Error:', error);
+        }
+            
     }
 
     return(

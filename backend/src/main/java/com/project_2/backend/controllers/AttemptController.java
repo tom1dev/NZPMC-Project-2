@@ -49,7 +49,7 @@ public class AttemptController {
     public ResponseEntity<AttemptModel> addAttempt(@RequestBody AttemptModel attempt) {
         try{
             attemptService.createNewAttempt(attempt);
-            return ResponseEntity.ok(attempt);
+            return ResponseEntity.ok().body(null);
         }catch(Exception e){
             return ResponseEntity.status(500).body(null);
         }
