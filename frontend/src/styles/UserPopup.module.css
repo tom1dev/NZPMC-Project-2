@@ -45,3 +45,10 @@
     width: 90%;
     margin-right: 4vw;
 }
+
+.resultContainer{
+    display: block;
+    border: 3px solid black;
+    border-radius: 15px;
+
+}

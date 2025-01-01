@@ -5,7 +5,7 @@
 }
 
 .questionContainer{
-    display: block; /* Use flex instead of inline-flex */
+    display: block; 
     justify-content: start;
     padding: 10px;
     border: 1px solid black;
@@ -13,4 +13,11 @@
 .questionParram{
     color:black;
     font-size:20px;
+}
+
+.resultContainer{
+    display: flex;
+    gap: 2vw;
+    justify-content: center;
+    border: 1px solid black;
 }

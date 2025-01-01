@@ -6,6 +6,7 @@ import EventDetailsPopup from './EventDetailsPopup.jsx';
 import { useNavigate } from 'react-router-dom';
 import CompetitionEventLinkPopup from '../competition/CompetitionEventLinkPopup.jsx';
 import CompetitionDetailsPopup from '../competition/CompetitionDetailsPopup.jsx';
+import GeneratedResults from '../competition/generatedResults.jsx';
 
 
 const EventTableEntry = ({event,user,enrolled}) => {
@@ -13,6 +14,7 @@ const EventTableEntry = ({event,user,enrolled}) => {
     const [popupOpen, setPopupOpen] = useState(false);
     const [isCompetitionPopup, setIsCompetitionPopup] =  useState(false);
     const [isCompetitionViewPopup, setIsCompetitionViewPopup] =  useState(false);
+    const [viewGenerateDetails, setViewGenerateDetails] = useState(false);
     const [competition, setCompetition] = useState();
 
 
@@ -68,6 +70,10 @@ const EventTableEntry = ({event,user,enrolled}) => {
         setIsCompetitionPopup(!isCompetitionPopup);
     }
 
+    const toggleGenerateResults  = () => {
+        setViewGenerateDetails(!viewGenerateDetails)
+    }
+
     const toggleCompetitionViewPopuup = () =>{
         setIsCompetitionViewPopup(!isCompetitionViewPopup);
     }
@@ -83,7 +89,11 @@ const EventTableEntry = ({event,user,enrolled}) => {
             <h2 className={styles.eventName}>{event.name}</h2>
             <h2 className={styles.eventDate}>{event.date}</h2>
             <button className={styles.eventViewButton} onClick={(e) => {togglePopup(e)}}>View</button>
+            
             {!user && !competition && <button className={styles.eventViewButton} onClick={(e) => {toggleCompetitionPopup(e)}}>Add Competition</button>}
+            {!user && competition && <button className={styles.eventViewButton} onClick={(e) => {toggleGenerateResults(e)}}>Generate Results</button>}
+
+
             {user && competition && <button className={styles.eventViewButton} onClick={(e) => {toggleCompetitionViewPopuup(e)}}>View Competition</button>}
             {console.log(user)}
             {/**If the user is not logged in, show the create account button */}
@@ -100,6 +110,9 @@ const EventTableEntry = ({event,user,enrolled}) => {
 
 
             {isCompetitionViewPopup	&&<CompetitionDetailsPopup setViewPopupOpen= {setIsCompetitionViewPopup} competition ={competition}/>}
+            
+            {viewGenerateDetails && <GeneratedResults togglePopup = {toggleGenerateResults} competition = {competition}/>}
+            
             { !event.competitionTitle  && isCompetitionPopup && <CompetitionEventLinkPopup togglePopup ={toggleCompetitionPopup} event={event}/>}
         </div>
     );
