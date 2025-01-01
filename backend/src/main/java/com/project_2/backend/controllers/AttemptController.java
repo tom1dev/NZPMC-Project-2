@@ -45,6 +45,19 @@ public class AttemptController {
 
     }
 
+    @GetMapping("/competition/{competition}")
+    public ResponseEntity<List<AttemptModel>> getCompetitionAttempts(@PathVariable String competition) {
+        try{
+            List<AttemptModel> attempts = attemptService.findAllByCompetitionId(competition);
+            if(attempts == null|| attempts.isEmpty()){
+                return ResponseEntity.status(404).body(null);
+            }
+            return ResponseEntity.ok(attempts);
+        }catch(Exception e){
+            return ResponseEntity.status(500).body(null);
+        }
+    }
+
     @PostMapping("")
     public ResponseEntity<AttemptModel> addAttempt(@RequestBody AttemptModel attempt) {
         try{
@@ -54,6 +67,7 @@ public class AttemptController {
             return ResponseEntity.status(500).body(null);
         }
     }
+
 
 
 

@@ -17,6 +17,9 @@ public class AttemptService {
     public List<AttemptModel> getAllUserAttempts(String email) {
         return attemptRepository.findAllByStudentEmail(email);
     }
+    public List<AttemptModel> findAllByCompetitionId(String competitionId) {
+        return attemptRepository.findAllByCompetitionId(competitionId);
+    }
 
     public AttemptModel getUserAttempt(String email,String competitionTitle){
         return attemptRepository.findOneByStudentEmailAndCompetitionId(email,competitionTitle);
