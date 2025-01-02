@@ -11,5 +11,9 @@ import java.util.List;
 public interface EventRepository extends MongoRepository <EventModel, String> {
     List<EventModel> findAllByCompetitionTitleIsNotNull();
 
+    List<EventModel> findAllByCompetitionTitle(String title);
+
+
+
 
 }

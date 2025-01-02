@@ -38,6 +38,13 @@ public class EventService {
         return events;
     }
 
+    public List<EventModel> getEventsByCompetition(String competitionName){
+        return eventRepository.findAllByCompetitionTitle(competitionName);
+
+
+
+    }
+
     public String getUserAmountByEventId(String eventID){
 
         List<UserModel> users = userService.getAllUsers();

@@ -6,16 +6,19 @@ import userService from '../../services/userService.js';
 import QuestionDisplay from '../question/QuestionDisplay.jsx';
 import CompetitionFillout from './CompetitionFillout.jsx';
 import competitionService from '../../services/competitionService.js';
+import EventDropDownList from '../event/EventDropDownList.jsx';
 
 const CompetitionDetailsPopup = ({setViewPopupOpen, competition,hasJoinedEvent}) => {
     const [questionAmount, setQuestionAmount] = useState(0);
     const [questions, setQuestions] = useState([]);
+    const [events, setEvents] = useState([]);
     const [user, setUser] = useState();
 
     //gets the user and the questions for the competition
     useEffect(() => {
         fetchCompetitionQuestions();
         getUserAccount();
+        fetchEvents();
 
         if(competition.questionIds){
             setQuestionAmount(competition.questionIds.length);
@@ -24,7 +27,15 @@ const CompetitionDetailsPopup = ({setViewPopupOpen, competition,hasJoinedEvent})
         }
     },[]);
 
-
+    const fetchEvents = async () => {
+        try {
+            const gottenEvents = await eventService.getEventByCompetition(competition.title);
+            setEvents(gottenEvents);
+        } catch (error) {
+            console.log('Error fetching event user amount:', error);
+        }
+    }
+    
     const fetchCompetitionQuestions = async () => {
         try {
             const gottenQuestions = await competitionService.getQuestionsForCompetition(competition.title);
@@ -60,7 +71,7 @@ const CompetitionDetailsPopup = ({setViewPopupOpen, competition,hasJoinedEvent})
                         user && user.email == "admin" &&
                         <div className={style.dropdownContainer}>
                             <Dropdown DropdownTitle="Events">
-                                hi
+                                <EventDropDownList events={events}/>
                             </Dropdown>
                             <Dropdown DropdownTitle="Questions">
                                 <QuestionDisplay questions={questions}/>

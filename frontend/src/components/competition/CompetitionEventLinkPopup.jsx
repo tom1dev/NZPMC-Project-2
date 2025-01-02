@@ -17,8 +17,10 @@ const CompetitionEventLinkPopup = ({togglePopup, event}) => {
                 alert("Competition cannot be found")
                 return;
             }
-
+    
             await competitionService.addEventToCompetition(competitionTitle, event.name);
+            alert("Competition has been added to the event")
+            togglePopup();
         }catch(error){
             alert("Competition cannot be found")
             console.log(error)
