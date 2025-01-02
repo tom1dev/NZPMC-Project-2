@@ -39,7 +39,6 @@ const Landing = () => {
                 
                 {/*if user is not logged in, display a notification*/}
                 {!user.name && <LoggedOutNotification />}
-                <CompetitionDisplay/>
                 <EventDisplay user={user} />
             </div>
         </div>

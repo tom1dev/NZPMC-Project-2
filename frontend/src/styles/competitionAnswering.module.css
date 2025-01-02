@@ -1,6 +1,7 @@
 .startButton{
     width: 30%;
-    align-self: flex-end;
+    align-self: center;
+    margin: 0 0 1vw 0;
 }
 .title{
     color: black;

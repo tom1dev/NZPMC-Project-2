@@ -8,5 +8,5 @@ import java.util.List;
 public interface AttemptRepository extends MongoRepository<AttemptModel, String> {
     List<AttemptModel> findAllByStudentEmail(String username);
     List<AttemptModel> findAllByCompetitionId(String competitionId);
-    AttemptModel findOneByStudentEmailAndCompetitionId(String StudentEmail, String CompetitionId);
+    List<AttemptModel> findAllByStudentEmailAndCompetitionId(String StudentEmail, String CompetitionId);
 }

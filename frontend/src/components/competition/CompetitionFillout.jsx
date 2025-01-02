@@ -9,6 +9,9 @@ import attemptService from "../../services/attemptService";
 const CompetitionFillout = ({competition}) =>{
     const[questions,setQuestions] = useState();
     const[started,setStarted] = useState(false);
+    const[hasFinishedAttempt, setHasFinishedAttempt] = useState(false);
+
+
     let map = new Map([]);
 
 
@@ -17,6 +20,24 @@ const CompetitionFillout = ({competition}) =>{
         console.log(map)
     }
 
+    const checkUserFinished = async () =>{
+        try{
+            const user = await userService.getUserByToken();
+            if(!user){
+                return
+            }
+            console.log(user[0])
+            const userAttempt = await attemptService.getAttempt(user[0].email, competition.title);
+
+            if(userAttempt){
+                setHasFinishedAttempt(true)
+            }
+
+        }catch(error){
+            console.log(error)
+            return;
+        }
+    }
 
     useEffect(() =>{
         const fetchQuestionsForCompetition = async () => {
@@ -30,6 +51,7 @@ const CompetitionFillout = ({competition}) =>{
         };
 
         fetchQuestionsForCompetition()
+        checkUserFinished()
     },[])
 
     const toggleStart = () => {
@@ -44,10 +66,11 @@ const CompetitionFillout = ({competition}) =>{
                 studentEmail: user[0].email,
                 competitionId: competition.title,
                 attempts: Object.fromEntries(map)})
+
+            window.location.reload();
         }catch (error) {
             console.log('Error:', error);
-        }
-            
+        }       
     }
 
     return(
@@ -71,14 +94,11 @@ const CompetitionFillout = ({competition}) =>{
 
 
                 :
-                <button className={style.startButton} onClick={(e) => {toggleStart()} }>Start</button>
-                
-                
+                (hasFinishedAttempt ?<h1 className={style.title}>Competition has Been Completed</h1>
+                 :<button className={style.startButton} onClick={(e) => {toggleStart()} }>Start Competition</button>)
+                      
                 
             }
-        
-        
-        
         </>
     );
 }

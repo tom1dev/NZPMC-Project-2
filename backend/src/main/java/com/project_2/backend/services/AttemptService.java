@@ -22,7 +22,13 @@ public class AttemptService {
     }
 
     public AttemptModel getUserAttempt(String email,String competitionTitle){
-        return attemptRepository.findOneByStudentEmailAndCompetitionId(email,competitionTitle);
+        List<AttemptModel> attempts = attemptRepository.findAllByStudentEmailAndCompetitionId(email,competitionTitle);
+        if(attempts == null || attempts.isEmpty()){
+            return null;
+        }else{
+            return attempts.getFirst();
+        }
+
     }
 
     public void createNewAttempt(AttemptModel attempt){
