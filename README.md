@@ -1,19 +1,13 @@
-<<<<<<< HEAD
 # NZPMC-Project-2
 
-This is the first miniproject created by tdev429(tom).
-
-### Demo
-The live demo can be found at https://nzpmc-project-1.onrender.com/ 
-The admin account can be accessed via email: admin, password: admin
+This is the Second miniproject created by tdev429(tom).
 
 ## About the project:
 ### Project Stack:
  * JavaScript
- * NodeJS
- * ExpressJS
  * MongoDB
- * mongoose
+ * Java
+ * SpringBoot
 
 This project is a user event registration site where users can join events after signing in. Admins can also view all users and create events directly through the application.
 
@@ -50,10 +44,6 @@ Created using a vite template.
 - /services/: contains services used for querying the backend
 
 ### Backend:
-#### index.js:
-- Main JavaScript file used by our application is executed on launch
-#### /config/mongoDB.js:
-- create a connection between the backend and Mongodb server
 
 #### /routers/:
 -    defines endpoint for different user queries
@@ -62,10 +52,11 @@ Created using a vite template.
 -   controls the data manipulation of HTTP requests and responses
 
 #### /services/:
--   used to query mongoDB and return responses. To do this, it uses the Mongoose library
+-   used to query mongoDB and return responses.
 
 #### /models/:
--   contains the mongoose schemas and objects for different objects stored in the database
+-   contains the MongoDB schemas and objects for different objects stored in the database
+
 
 
 ## Getting Started:
@@ -79,7 +70,7 @@ To run the dev version of the application, we will need to perform initialisatio
 2. In the 'frontend' folder, run 'npm run dev'
 
 ### Backend:
-1. In the 'frontend' folder, run 'npm install'
+1. mvn install
 2. .env file is required to run this application in the 'backend' directory. It contains the URI for the database, A preferred port for the backend to run on, and the secret key for generating jwt auth tokens. It can be created with the template here:
 <br>
 <br>
@@ -89,7 +80,4 @@ PORT = {PortNum}
 <br>
 JWT_SECRET = "{secret here}"
 
-3. In the 'backend ' folder, run 'npm run dev'
-=======
-# NZPMC-Project-1
->>>>>>> main
+3. Run backend from BackendApplication
