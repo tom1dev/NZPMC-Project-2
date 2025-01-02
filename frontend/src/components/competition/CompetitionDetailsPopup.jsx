@@ -7,34 +7,18 @@ import QuestionDisplay from '../question/QuestionDisplay.jsx';
 import CompetitionFillout from './CompetitionFillout.jsx';
 import competitionService from '../../services/competitionService.js';
 
-const CompetitionDetailsPopup = ({setViewPopupOpen, competition}) => {
+const CompetitionDetailsPopup = ({setViewPopupOpen, competition,hasJoinedEvent}) => {
     const [questionAmount, setQuestionAmount] = useState(0);
     const [questions, setQuestions] = useState([]);
     const [user, setUser] = useState();
 
-    //gets the amount of users that have joined the event apon loading
+
     useEffect(() => {
-        const fetchEventUserAmount = async () => {
-            try {
-                const gottenQuestions = await competitionService.getQuestionsForCompetition(competition.title);
-                setQuestions(gottenQuestions);
-            } catch (error) {
-                console.log('Error fetching event user amount:', error);
-            }
-        };
-
-        const getUserAccount =  async () =>{
-            try {
-                const currentUser = await userService.getUserByToken();
-                console.log(currentUser)
-                setUser(currentUser[0]);
-            } catch (error) {
-                console.log('Error fetching event user amount:', error);
-            }
-        }
-
-        fetchEventUserAmount();
+        fetchCompetitionQuestions();
         getUserAccount();
+
+
+
         if(competition.questionIds){
             setQuestionAmount(competition.questionIds.length);
         }else{
@@ -42,6 +26,25 @@ const CompetitionDetailsPopup = ({setViewPopupOpen, competition}) => {
         }
     },[]);
 
+
+    const fetchCompetitionQuestions = async () => {
+        try {
+            const gottenQuestions = await competitionService.getQuestionsForCompetition(competition.title);
+            setQuestions(gottenQuestions);
+        } catch (error) {
+            console.log('Error fetching event user amount:', error);
+        }
+    };
+
+    const getUserAccount =  async () =>{
+        try {
+            const currentUser = await userService.getUserByToken();
+            console.log(currentUser)
+            setUser(currentUser[0]);
+        } catch (error) {
+            console.log('Error fetching event user amount:', error);
+        }
+    }
 
     return (
         <div className={style.popupWindow}>
@@ -64,8 +67,8 @@ const CompetitionDetailsPopup = ({setViewPopupOpen, competition}) => {
                     }   
 
                     {
-                    (user&& user.name)?
-                            (user.name !== "admin" && <CompetitionFillout competition = {competition}/>):<h2>Please Sign In and Join competition in order to start it</h2>
+                    (user&& user.name && hasJoinedEvent && user.name !== "admin")?
+                            ( <CompetitionFillout competition = {competition}/>):(<h2>Please sign in and join event in order to start the competition</h2>)
                     }
 
            

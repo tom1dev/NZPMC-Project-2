@@ -109,7 +109,7 @@ const EventTableEntry = ({event,user,enrolled}) => {
             {popupOpen && <EventDetailsPopup togglePopup={togglePopup} event={event}/>}
 
 
-            {isCompetitionViewPopup	&&<CompetitionDetailsPopup setViewPopupOpen= {setIsCompetitionViewPopup} competition ={competition}/>}
+            {isCompetitionViewPopup	&&<CompetitionDetailsPopup setViewPopupOpen= {setIsCompetitionViewPopup} competition ={competition} hasJoinedEvent={enrolledUser}/>}
             
             {viewGenerateDetails && <GeneratedResults togglePopup = {toggleGenerateResults} competition = {competition}/>}
             
