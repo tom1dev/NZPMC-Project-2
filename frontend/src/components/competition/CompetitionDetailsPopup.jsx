@@ -64,8 +64,8 @@ const CompetitionDetailsPopup = ({setViewPopupOpen, competition}) => {
                     }   
 
                     {
-                    user&& user.name !== "admin"&&
-                            <CompetitionFillout competition = {competition}/>
+                    (user&& user.name)?
+                            (user.name !== "admin" && <CompetitionFillout competition = {competition}/>):<h2>Please Sign In and Join competition in order to start it</h2>
                     }
 
            
