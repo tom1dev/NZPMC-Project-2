@@ -9,10 +9,7 @@ import com.project_2.backend.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class CompetitionService {
@@ -29,6 +26,24 @@ public class CompetitionService {
 
 
         return competitionRepository.findAll();
+    }
+
+    public List<CompetitionModel> getAllCompetitionsWithEvent() {
+        List<EventModel> events = eventService.getAllEventsWithACompetition();
+        List<CompetitionModel> competitions = new ArrayList<CompetitionModel>();
+        HashSet<String> competitionIds = new HashSet<String>();
+
+        for(EventModel event : events) {
+            CompetitionModel competition = getCompetitionByTitle(event.getCompetitionTitle());
+
+            if(competition != null && !competitionIds.contains(competition.getTitle())) {
+                competitions.add(competition);
+                competitionIds.add(competition.getTitle());
+            }
+        }
+
+
+        return competitions;
     }
 
     public CompetitionModel getCompetitionByTitle(String title) {
@@ -49,6 +64,8 @@ public class CompetitionService {
 
         //sets the competition in the event
         event.setCompetitionTitle(competitionName);
+        eventService.createEvent(event);
+
         return true;
 
     }
@@ -83,6 +100,25 @@ public class CompetitionService {
 
 
         return true;
+    }
+
+    public List<QuestionModel> getQuestions(String competitionName) {
+        CompetitionModel competition = getCompetitionByTitle(competitionName);
+        if (competition == null || competition.getQuestionIds() == null||competition.getQuestionIds().length == 0) {
+            return Collections.emptyList();
+        }
+
+        List<QuestionModel> questions = new ArrayList<>();
+
+        for(String questionName: competition.getQuestionIds()) {
+            QuestionModel question = questionRepository.findById(questionName).orElse(null);
+            if (question != null) {
+                questions.add(question);
+            }
+        }
+
+
+        return questions;
     }
 
 

@@ -60,6 +60,20 @@ public class EventController {
         }
     }
 
+    @GetMapping("/competition/{getEventsByCompetition}")
+    public ResponseEntity<List<EventModel>> getEventsByCompetition(@PathVariable String getEventsByCompetition) {
+        try{
+            List<EventModel> events = eventService.getEventsByCompetition(getEventsByCompetition);
+            if(events != null || events.size() > 0){
+                return ResponseEntity.ok(events);
+            }else{
+                return ResponseEntity.status(404).body(null);
+            }
+        }catch (Exception e){
+            return ResponseEntity.status(500).body(null);
+        }
+    }
+
     @PostMapping("/")
     public ResponseEntity<String> CreateEvent(@RequestBody EventModel event) {
         try{

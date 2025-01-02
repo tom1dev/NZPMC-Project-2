@@ -12,14 +12,14 @@ import competitionService from '../../services/competitionService.js';
 const CompetitionDisplay = () => {
     const [competitions, setCompetitions] = useState([]);
 
-    //fetches all the events and the user's events
+    //fetches all the competitions.
     useEffect(() => {
 
-        const fetchEvents = async () => {
+        const fetchCompetition = async () => {
             await getAllCompetitions();
         }
 
-        fetchEvents();
+        fetchCompetition();
 
     }, []);
 
@@ -42,7 +42,10 @@ const CompetitionDisplay = () => {
 
             <CompetitionDetailsParramTitles/>
 
-            {competitions && competitions.length > 0 && competitions.map((competition) => {
+
+            {
+                //for every competition in the competitions array, display the competition as a table entry
+                competitions && competitions.length > 0 && competitions.map((competition) => {
                 return <CompetitionTableEntry  competition={competition}/>
             })}
         </div>

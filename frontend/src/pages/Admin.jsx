@@ -7,7 +7,7 @@ import UserDisplay from '../components/user/UserDisplay.jsx';
 import { useNavigate } from "react-router-dom";
 import CreateCompetition from '../components/competition/CreateCompetition.jsx';
 import CompetitionDisplay from '../components/competition/CompetitionDisplay.jsx';
-
+import Dropdown from '../components/misc/Dropdown.jsx';
 import userService from '../services/userService';
 const Admin = () => {
     //allows for navigation to other pages
@@ -37,8 +37,6 @@ const Admin = () => {
 
         fetchUserInformation();
     }, []);
-
-
 
 
     return (

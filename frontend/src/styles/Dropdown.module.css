@@ -1,0 +1,50 @@
+.dropdownContainer{
+    position: relative;
+    display: inline-block;
+    border:#7f7f7f  solid  3px;
+    background-color: white;
+    width: 100%;
+    padding: 0;
+    margin: 0 0 1vh 0;
+}
+.dropdownImage{
+    width: 3vw;
+    height: 3vw;
+    margin: 0 0 0 0;
+    padding: 0;
+    fill:white;
+    right: 0;
+}
+.dropdownImageRotated{
+    width: 3vw;
+    height: 3vw;
+    margin: 0 0 0 0;
+    padding: 0;
+    fill:white;
+    right: 0;
+    transform: rotate(180deg);
+}
+
+
+.dropdownTitle{
+    margin-left: 2vw;
+    color:white
+}
+
+.dropdownButton{
+    width: 100%;
+    text-align: left;
+    margin: 0;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0;
+}
+
+.dropdownContentContainer{
+    position: relative;
+    width: 100%;
+    border-top: 2px solid #7f7f7f;
+
+    padding: 0;
+}

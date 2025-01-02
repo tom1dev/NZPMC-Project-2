@@ -14,14 +14,14 @@ public class EventModel {
     private String name;
     private String description;
     private Date date;
-    private String CompetitionTitle;
+    private String competitionTitle;
 
     public String getCompetitionTitle() {
-        return CompetitionTitle;
+        return competitionTitle;
     }
 
     public void setCompetitionTitle(String competitionTitle) {
-        CompetitionTitle = competitionTitle;
+        this.competitionTitle = competitionTitle;
     }
 
     public String getName() {

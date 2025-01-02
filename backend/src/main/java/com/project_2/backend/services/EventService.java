@@ -33,6 +33,17 @@ public class EventService {
         return eventRepository.save(event);
     }
 
+    public List<EventModel> getAllEventsWithACompetition(){
+        List<EventModel> events = eventRepository.findAllByCompetitionTitleIsNotNull();
+        return events;
+    }
+
+    public List<EventModel> getEventsByCompetition(String competitionName){
+        return eventRepository.findAllByCompetitionTitle(competitionName);
+
+
+
+    }
 
     public String getUserAmountByEventId(String eventID){
 
