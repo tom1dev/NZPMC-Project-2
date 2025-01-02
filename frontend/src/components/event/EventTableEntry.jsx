@@ -95,7 +95,6 @@ const EventTableEntry = ({event,user,enrolled}) => {
 
 
             {user && competition && <button className={styles.eventViewButton} onClick={(e) => {toggleCompetitionViewPopuup(e)}}>View Competition</button>}
-            {console.log(user)}
             {/**If the user is not logged in, show the create account button */}
             {user && user.length === 0 && <button className={styles.eventSignInButton} onClick={(e) =>{handleSignUp(e)}}>Create Account</button>}
 
@@ -109,11 +108,14 @@ const EventTableEntry = ({event,user,enrolled}) => {
             {popupOpen && <EventDetailsPopup togglePopup={togglePopup} event={event}/>}
 
 
-            {isCompetitionViewPopup	&&<CompetitionDetailsPopup setViewPopupOpen= {setIsCompetitionViewPopup} competition ={competition} hasJoinedEvent={enrolledUser}/>}
+            {   //toggles the competition popup
+                isCompetitionViewPopup	&&<CompetitionDetailsPopup setViewPopupOpen= {setIsCompetitionViewPopup} competition ={competition} hasJoinedEvent={enrolledUser}/>}
             
-            {viewGenerateDetails && <GeneratedResults togglePopup = {toggleGenerateResults} competition = {competition}/>}
+            {   //toggles the generate results popup   
+                viewGenerateDetails && <GeneratedResults togglePopup = {toggleGenerateResults} competition = {competition}/>}
             
-            { !event.competitionTitle  && isCompetitionPopup && <CompetitionEventLinkPopup togglePopup ={toggleCompetitionPopup} event={event}/>}
+            {   //toggles the competition event linkPopup 
+                !event.competitionTitle  && isCompetitionPopup && <CompetitionEventLinkPopup togglePopup ={toggleCompetitionPopup} event={event}/>}
         </div>
     );
 

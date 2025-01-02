@@ -1,5 +1,5 @@
 import styles from '../../styles/Questions.module.css'
-
+//displays the question in a table format
 const QuestionTableEntry = ({ question }) => {
     return (
         <div className={styles.questionContainer}>

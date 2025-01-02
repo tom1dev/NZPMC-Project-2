@@ -11,22 +11,21 @@ const CompetitionFillout = ({competition}) =>{
     const[started,setStarted] = useState(false);
     const[hasFinishedAttempt, setHasFinishedAttempt] = useState(false);
 
-
+    //map to store the answers for the questions
     let map = new Map([]);
 
 
     const handleAnswerChange = (questionName,optionChosen) =>{
         map.set(questionName,optionChosen)
-        console.log(map)
     }
 
+    //checks if the user has already finished the competition
     const checkUserFinished = async () =>{
         try{
             const user = await userService.getUserByToken();
             if(!user){
                 return
             }
-            console.log(user[0])
             const userAttempt = await attemptService.getAttempt(user[0].email, competition.title);
 
             if(userAttempt){
@@ -39,17 +38,18 @@ const CompetitionFillout = ({competition}) =>{
         }
     }
 
+
+    const fetchQuestionsForCompetition = async () => {
+        try {
+            const gottenQuestions = await competitionService.getQuestionsForCompetition(competition.title);
+            setQuestions(gottenQuestions);
+
+        } catch (error) {
+            console.log('Error fetching event user amount:', error);
+        }
+    };
+
     useEffect(() =>{
-        const fetchQuestionsForCompetition = async () => {
-            try {
-                const gottenQuestions = await competitionService.getQuestionsForCompetition(competition.title);
-                setQuestions(gottenQuestions);
-
-            } catch (error) {
-                console.log('Error fetching event user amount:', error);
-            }
-        };
-
         fetchQuestionsForCompetition()
         checkUserFinished()
     },[])
@@ -58,6 +58,7 @@ const CompetitionFillout = ({competition}) =>{
         setStarted(!started)
     }
 
+    //submits the attempt of the competition to the database
     const handleSubmit = async () =>{
         try{
             const user =  await userService.getUserByToken();
@@ -75,7 +76,8 @@ const CompetitionFillout = ({competition}) =>{
 
     return(
         <>
-            {
+            {   
+                //if the user has started the competition show the questions
                 started?
                 
                     <div className={style.answersContainer}>
@@ -94,8 +96,9 @@ const CompetitionFillout = ({competition}) =>{
 
 
                 :
-                (hasFinishedAttempt ?<h1 className={style.title}>Competition has Been Completed</h1>
-                 :<button className={style.startButton} onClick={(e) => {toggleStart()} }>Start Competition</button>)
+                (   //if the user has not started the competition show the start button or if the user has already finished the competition show a message
+                    hasFinishedAttempt ?<h1 className={style.title}>Competition has Been Completed</h1>
+                    :<button className={style.startButton} onClick={(e) => {toggleStart()} }>Start Competition</button>)
                       
                 
             }

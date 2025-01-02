@@ -27,13 +27,13 @@ const CompetitionTableEntry = ({competition}) => {
                 <button className={styles.eventViewButton} onClick={(e) => {togglePopup(viewPopupOpen,setViewPopupOpen)}}>View</button>
             </div>
 
-            {
+            {   //toggles the question popup
                 questionPopupOpen &&
                 <AddQuestionPopup setQuestionPopupOpen= {setQuestionPopupOpen} competition ={competition}/>
 
             }
 
-            {
+            {   //toggles the competition popup
                 viewPopupOpen &&
                 <CompetitionDetailsPopup setViewPopupOpen= {setViewPopupOpen} competition ={competition}/>
             }

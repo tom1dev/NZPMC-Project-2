@@ -18,7 +18,7 @@ const CreateQuestion = ({competition}) => {
     }
 
 
-    //submits the created event to the database
+    //submits the created question to the database
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (!title || !answer1 || !answer2|| !answer3|| !answer4) {

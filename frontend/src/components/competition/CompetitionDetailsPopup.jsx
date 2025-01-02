@@ -12,12 +12,10 @@ const CompetitionDetailsPopup = ({setViewPopupOpen, competition,hasJoinedEvent})
     const [questions, setQuestions] = useState([]);
     const [user, setUser] = useState();
 
-
+    //gets the user and the questions for the competition
     useEffect(() => {
         fetchCompetitionQuestions();
         getUserAccount();
-
-
 
         if(competition.questionIds){
             setQuestionAmount(competition.questionIds.length);
@@ -55,7 +53,11 @@ const CompetitionDetailsPopup = ({setViewPopupOpen, competition,hasJoinedEvent})
                     <h2 className={style.popupParram}>Name : {competition.title}</h2>
                     <h2 className={style.popupParram}>Number Of Questions: {questionAmount}</h2>
                     
-                    {user && user.email == "admin" &&
+
+                    
+                    {
+                        //if the user is the admin show the dropdowns for the competition questions and events
+                        user && user.email == "admin" &&
                         <div className={style.dropdownContainer}>
                             <Dropdown DropdownTitle="Events">
                                 hi
@@ -67,6 +69,7 @@ const CompetitionDetailsPopup = ({setViewPopupOpen, competition,hasJoinedEvent})
                     }   
 
                     {
+                        //if the user is not the admin show the competition fillout otherwise show a notification to sign in
                     (user&& user.name && hasJoinedEvent && user.name !== "admin")?
                             ( <CompetitionFillout competition = {competition}/>):(<h2>Please sign in and join event in order to start the competition</h2>)
                     }

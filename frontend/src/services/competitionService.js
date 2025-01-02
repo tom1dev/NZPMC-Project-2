@@ -3,7 +3,6 @@ import cookieService from './cookieService';
 
 const getAllCompetitions = async () => {
     const res =  await axios.get('http://localhost:3001/api/competition',{headers: {'authorization': cookieService.getCookie("token")}});
-    console.log(res.data);
     if(res.status === 200){
         return res.data;
     }else if(res.status === 404){

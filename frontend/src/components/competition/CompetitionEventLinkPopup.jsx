@@ -8,11 +8,7 @@ import competitionService from '../../services/competitionService.js';
 const CompetitionEventLinkPopup = ({togglePopup, event}) => {
     const[competitionTitle, setCompetitionTitle] = useState("");
 
-    //gets the amount of users that have joined the event apon loading
-    useEffect(() => {
-
-    },[]);
-
+    //links the competition to the current event
     const handleCompetitionLink = async () =>{
         try{
             console.log(competitionTitle)

@@ -8,7 +8,7 @@ const GeneratedResults = ({togglePopup, competition}) => {
     const[attempts, setAttempts] = useState([]);
     const[questions, setQuestionsAtempts] = useState([]);
 
-    //gets the amount of users that have joined the event apon loading
+    //gets the attempts and the questions for the competition
     useEffect(() => {
         const getAttempts = async () => {
             try {    
@@ -42,14 +42,8 @@ const GeneratedResults = ({togglePopup, competition}) => {
                     <h2 className={style.popupParram}>Generated Results</h2>       
                     <div className={style.resultContainer}>
                         {questions&& attempts && attempts.map((attempt,index) => {return <UserResult key={index}  attempt = {attempt} questions = {questions}/>})}
-
-
-
-                        
                     </div>    
                       
-
-
                     <button className={style.popupCloseButton} onClick={(e) => togglePopup()}>Close</button>
             </div>
 
