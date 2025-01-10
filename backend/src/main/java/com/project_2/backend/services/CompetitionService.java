@@ -121,6 +121,26 @@ public class CompetitionService {
         return questions;
     }
 
+    public List<QuestionModel> getQuestionsNotInCompetition(String competitionName) {
+        CompetitionModel competition = getCompetitionByTitle(competitionName);
+        if (competition == null) {
+            return Collections.emptyList();
+        }
+
+        List<String> questionsInComp = List.of(competition.getQuestionIds());
+
+        List<QuestionModel> questions = questionRepository.findByTitleNotIn(questionsInComp);
+        if (questions != null && !questions.isEmpty()) {
+            return questions;
+        }
+
+
+        return Collections.emptyList();
+
+
+
+    }
+
 
 
 

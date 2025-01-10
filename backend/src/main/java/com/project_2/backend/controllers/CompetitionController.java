@@ -107,4 +107,15 @@ public class CompetitionController {
         }
     }
 
+    //gets questions currently not in the competition
+    @GetMapping("/{competition}/availableQuestions")
+    public ResponseEntity<List<QuestionModel>> getAvailableQuestionForCompetition(@PathVariable String competition){
+        List<QuestionModel> questions = competitionService.getQuestionsNotInCompetition(competition);
+        if(questions.isEmpty()){
+            return ResponseEntity.status(404).build();
+        }else{
+            return ResponseEntity.ok(questions);
+        }
+    }
+
 }
