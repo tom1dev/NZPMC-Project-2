@@ -2,11 +2,40 @@
     display:block;
     width:100%;
     border:none;
+    box-sizing: border-box;
+
+}
+.addQuestionContainer{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1vw;
+    padding: 1vh 1vw;
+    box-sizing: border-box;
+}
+
+.addQuestionButton{
+    background-color: #4CAF50;
+    padding: 15px 32px;
+    margin: 0;
+    text-align: center;
+    justify-content: center;
+    width: fit-content;
+    min-width: fit-content;
+    font-size: 16px;
+    cursor: pointer;
+}
+.addQuestionButton:hover{
+    background-color: #45a049;
 }
 
 .questionContainer{
+    margin: 0;
+    box-sizing: border-box;
     display: block; 
     justify-content: start;
+    width: 100%;
     padding: 10px;
     border: 1px solid black;
 }

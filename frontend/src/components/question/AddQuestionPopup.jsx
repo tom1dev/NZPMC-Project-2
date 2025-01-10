@@ -32,10 +32,10 @@ const AddQuestionPopup = ({competition,setQuestionPopupOpen}) => {
             <div className={style.popupContainer}>
                 
                     <h className={style.popupTitle}>Add Question</h>
-                    <h2 className={style.popupParram}>Competition Title:{competition.title}</h2>
+                    <h2 className={style.popupParram}>Competition Title: {competition.title}</h2>
                     
                     <Dropdown DropdownTitle="Add An Exsisting Question">
-                                <QuestionDisplay questions={questions}/>
+                                <QuestionDisplay questions={questions} competitionTitle = {competition.title}/>
                     </Dropdown>
 
 

@@ -33,7 +33,7 @@ const CreateQuestion = ({competition}) => {
                 answer2,
                 answer3,
                 answer4],
-                correctAnswer:correctAnswer-1
+                correctChoiceIndex:correctAnswer-1
             }
 
             await competitionService.addQuestionToCompetition(competition.title,question);
@@ -47,7 +47,7 @@ const CreateQuestion = ({competition}) => {
 
     return (
         <div className={styles.eventsContainer}>
-            <h2 className={styles.eventTitle}>Create Question</h2>
+            <h2 className={styles.eventTitle}>Create And Add Question</h2>
             
             <form   className={styleCreateEvent.createEventContainer} onSubmit={handleSubmit}>
                 
