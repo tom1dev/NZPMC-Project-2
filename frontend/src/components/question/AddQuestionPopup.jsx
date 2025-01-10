@@ -12,7 +12,15 @@ const AddQuestionPopup = ({competition,setQuestionPopupOpen}) => {
 
 
     useEffect(() => {
-
+        const fetchQuestions = async () => {
+            try {
+                const gottenQuestions = await competitionService.getAvialableQuestionsForCompetition(competition.title);
+                setQuestions(gottenQuestions);
+            } catch (error) {
+                console.log('Error fetching event user amount:', error);
+            }
+        };
+        fetchQuestions();
 
 
 

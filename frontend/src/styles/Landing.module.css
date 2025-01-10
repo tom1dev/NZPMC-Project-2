@@ -45,9 +45,9 @@ body {
 .eventsContainer{
     margin-top: 2vh;
     position: relative;
-    height: auto;
-    display: flex;
-    min-height: 25vh;
+    height: max-content;
+    display: inline-flex;
+    min-height: fit-content;
     flex-direction: column;
     align-items: center;
     padding: 2vh;

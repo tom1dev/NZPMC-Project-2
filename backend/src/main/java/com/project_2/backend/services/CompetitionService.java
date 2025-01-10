@@ -127,7 +127,11 @@ public class CompetitionService {
             return Collections.emptyList();
         }
 
-        List<String> questionsInComp = List.of(competition.getQuestionIds());
+        List<String> questionsInComp = new ArrayList<String>();
+
+        if(competition.getQuestionIds() != null) {
+            questionsInComp.addAll(Arrays.asList(competition.getQuestionIds()));
+        }
 
         List<QuestionModel> questions = questionRepository.findByTitleNotIn(questionsInComp);
         if (questions != null && !questions.isEmpty()) {
