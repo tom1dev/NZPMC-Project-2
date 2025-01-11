@@ -72,14 +72,11 @@ public class CompetitionService {
 
     public Boolean addQuestionToCompetition(String competitionName, QuestionModel question) {
 
-        //saving question if it already exists do not save
-
         QuestionModel currentQuestion = questionRepository.findById(question.getTitle()).orElse(null);
-        if (currentQuestion != null) {
-            return false;
-        }
 
-        questionRepository.save(question);
+        if (currentQuestion == null) {
+            questionRepository.save(question);
+        }
 
         //adding question to competition
         CompetitionModel competition = getCompetitionByTitle(competitionName);

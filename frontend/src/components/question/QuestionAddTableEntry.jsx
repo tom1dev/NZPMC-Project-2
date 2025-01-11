@@ -4,9 +4,9 @@ import competitionService from '../../services/competitionService';
 //displays the question in a table format
 const QuestionAddTableEntry = ({ question,competitionTitle }) => {
 
-    const handleAddQuestion = () => {
-        competitionService.addQuestionToCompetition(competitionTitle,question);
-        //window.location.reload();
+    const handleAddQuestion =async  () => {
+        await competitionService.addQuestionToCompetition(competitionTitle,question);
+        window.location.reload();
     }
 
 
