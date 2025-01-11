@@ -47,9 +47,9 @@ const Admin = () => {
             <div className={styles.landingContentContainer}>
                 <h1 className={styles.landingPageTitle}>Admin Page</h1>
                 <UserDisplay />
-                <CreateCompetition />
+                
                 <CompetitionDisplay />
-                <CreateEvent />
+                
                 <EventDisplay />
 
             </div>

@@ -30,8 +30,7 @@ const CreateCompetition = () => {
     }
 
     return (
-        <div className={styles.eventsContainer}>
-            <h2 className={styles.eventTitle}>Create Competition</h2>
+        <div className={styles.createEventContainer}>
             
             <form   className={styleCreateEvent.createEventContainer} onSubmit={handleSubmit}>
                 

@@ -7,7 +7,8 @@ import eventService from '../../services/eventService.js';
 import CompetitionDetailsParramTitles from './CompetitionDetailsParramTitles.jsx';
 import CompetitionTableEntry from './CompetitionTableEntry.jsx';
 import competitionService from '../../services/competitionService.js';
-
+import Dropdown from '../misc/Dropdown.jsx';
+import CreateCompetition from './CreateCompetition.jsx';
 
 const CompetitionDisplay = () => {
     const [competitions, setCompetitions] = useState([]);
@@ -39,6 +40,10 @@ const CompetitionDisplay = () => {
         <div className={styles.eventsContainer}>
 
             <h2 className={styles.eventTitle}>Competitions</h2>
+            <Dropdown DropdownTitle="Create Competition">
+
+                <CreateCompetition />
+            </Dropdown>
 
             <CompetitionDetailsParramTitles/>
 

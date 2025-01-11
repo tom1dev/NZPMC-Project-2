@@ -6,6 +6,8 @@ import EventTableEntry from './EventTableEntry.jsx'
 import userService from '../../services/userService.js';
 import eventService from '../../services/eventService.js';
 import EventDetailsParramTitles from './EventDetailsParramTitles.jsx';
+import Dropdown from '../misc/Dropdown.jsx';
+import CreateEvent from './CreateEvent.jsx';
 
 
 const EventDisplay = ({ user }) => {
@@ -63,6 +65,16 @@ const EventDisplay = ({ user }) => {
         <div className={styles.eventsContainer}>
 
             <h2 className={styles.eventTitle}>Events</h2>
+
+            
+            {!user && (
+                <Dropdown DropdownTitle="Create Event">
+                    <CreateEvent />
+
+
+                </Dropdown>
+            )}
+
 
             <EventDetailsParramTitles/>
 

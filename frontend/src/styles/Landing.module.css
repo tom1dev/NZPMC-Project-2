@@ -55,6 +55,22 @@ body {
     background-color: #ffffff;
     border:#7f7f7f  solid  3px;
 }
+
+.createEventContainer{
+    
+        position: relative;
+        height: max-content;
+        display: flex;
+        min-height: fit-content;
+        flex-direction: column;
+        align-items: center;
+        padding: 2vh;
+        border-radius: 20px;   
+        background-color: #ffffff;
+       
+    
+}
+
 .eventViewTitleBox{
     display: flex;
     align-items: start;
