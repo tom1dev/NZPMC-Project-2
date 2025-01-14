@@ -9,6 +9,14 @@ import java.util.List;
 
 @Document
 public class QuestionModel {
+    public enum Difficulty {
+        EASY, MEDIUM, HARD
+    }
+
+    public enum Topic {
+        Mechanics, Waves, Algebra, Geometry
+    }
+
     @Id
     private String title;
 
@@ -16,6 +24,25 @@ public class QuestionModel {
 
     private int correctChoiceIndex;
 
+    private Difficulty difficulty;
+
+    private Topic topic;
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
 
     public String getTitle() {
         return title;
