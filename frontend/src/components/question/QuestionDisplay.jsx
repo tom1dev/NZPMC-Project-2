@@ -58,22 +58,28 @@ const QuestionDisplay = ({questions, competitionTitle}) => {
 
 
     return (<>
-            <select value={difficultyFilter} onChange={event => handleChange(event,setDifficultyFilter)}>
-                <option value="All">{"All"}</option>
-                <option value="Easy">{"Easy"}</option>
-                <option value="Medium">{"Medium"}</option>
-                <option value="Hard">{"Hard"}</option>
-            </select>
+            <div className={styles.filterContainer}>
+            
+                <h3 className={styles.questionParram}>Difficulty: </h3>
+                
+                <select className={styles.filterInput} value={difficultyFilter} onChange={event => handleChange(event,setDifficultyFilter)}>
+                    <option value="All">{"All"}</option>
+                    <option value="Easy">{"Easy"}</option>
+                    <option value="Medium">{"Medium"}</option>
+                    <option value="Hard">{"Hard"}</option>
+                </select>
 
-            <select value={categoryFilter} onChange={event => handleChange(event,setCategoryFilter)}>
-                <option value="All">{"All"}</option>
-                <option value="Geometry">{"Geometry"}</option>
-                <option value="Algebra">{"Algebra"}</option>
-                <option value="Waves">{"Waves"}</option>
-                <option value="Mechanics">{"Mechanics"}</option>
-            </select>
+                <h3 className={styles.questionParram}>Topic: </h3>
 
+                <select className={styles.filterInput} value={categoryFilter} onChange={event => handleChange(event,setCategoryFilter)}>
+                    <option value="All">{"All"}</option>
+                    <option value="Geometry">{"Geometry"}</option>
+                    <option value="Algebra">{"Algebra"}</option>
+                    <option value="Waves">{"Waves"}</option>
+                    <option value="Mechanics">{"Mechanics"}</option>
+                </select>
 
+            </div>
         
             {
                 //for every question in the questions array create add it to the display table
