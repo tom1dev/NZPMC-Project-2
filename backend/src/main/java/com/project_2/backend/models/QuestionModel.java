@@ -10,7 +10,7 @@ import java.util.List;
 @Document
 public class QuestionModel {
     public enum Difficulty {
-        EASY, MEDIUM, HARD
+        Easy, Medium, Hard
     }
 
     public enum Topic {
@@ -32,16 +32,16 @@ public class QuestionModel {
         return difficulty;
     }
 
-    public void setDifficulty(Difficulty difficulty) {
-        this.difficulty = difficulty;
+    public void setDifficulty(String difficulty) {
+        this.difficulty = Difficulty.valueOf(difficulty);;
     }
 
     public Topic getTopic() {
         return topic;
     }
 
-    public void setTopic(Topic topic) {
-        this.topic = topic;
+    public void setTopic(String topic) {
+        this.topic = Topic.valueOf(topic);
     }
 
     public String getTitle() {

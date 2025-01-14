@@ -12,6 +12,9 @@ const CreateQuestion = ({competition}) => {
     const [answer4,setAnswer4] = useState('');
     const [correctAnswer,setCorrectAnswer] = useState(1);
 
+    const [difficultyFilter, setDifficultyFilter] = useState('Easy');
+    const [categoryFilter, setCategoryFilter] = useState('Geometry');
+
     
     const handleVariableChange = (event, setter) =>{
         setter(event.target.value)
@@ -33,6 +36,8 @@ const CreateQuestion = ({competition}) => {
                 answer2,
                 answer3,
                 answer4],
+                difficulty:difficultyFilter,
+                topic:categoryFilter,
                 correctChoiceIndex:correctAnswer-1
             }
 
@@ -50,11 +55,32 @@ const CreateQuestion = ({competition}) => {
             <h2 className={styles.eventTitle}>Create And Add Question</h2>
             
             <form   className={styleCreateEvent.createEventContainer} onSubmit={handleSubmit}>
-                
-                
                 <div className={styleCreateEvent.parrameterBox}>
                     <h2 className={styleCreateEvent.parrameterTitle}>Title</h2> 
                     <input className={styleCreateEvent.parrameterInput} value={title}  onChange={(event) =>handleVariableChange(event,settitle)}/>
+                </div>
+
+
+                            
+                <div className={styleCreateEvent.parrameterBox}>
+                    <h2 className={styleCreateEvent.parrameterTitle}>Difficulty: </h2>
+                                    
+                    <select className={styleCreateEvent.parrameterInput} value={difficultyFilter} onChange={event => handleVariableChange(event,setDifficultyFilter)}>
+                        <option value="Easy">{"Easy"}</option>
+                        <option value="Medium">{"Medium"}</option>
+                        <option value="Hard">{"Hard"}</option>
+                    </select>
+                </div>
+
+                <div className={styleCreateEvent.parrameterBox}>
+                    <h2 className={styleCreateEvent.parrameterTitle}>Topic: </h2>
+                    
+                    <select className={styleCreateEvent.parrameterInput} value={categoryFilter} onChange={event => handleVariableChange(event,setCategoryFilter)}>
+                        <option value="Geometry">{"Geometry"}</option>
+                        <option value="Algebra">{"Algebra"}</option>
+                        <option value="Waves">{"Waves"}</option>
+                        <option value="Mechanics">{"Mechanics"}</option>
+                    </select>
                 </div>
 
                 <div className={styleCreateEvent.parrameterBox}>

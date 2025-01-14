@@ -28,7 +28,7 @@ const QuestionDisplay = ({questions, competitionTitle}) => {
             newViewableQuestions = newViewableQuestions.filter((question) => question.difficulty === difficultyFilter);
         }
         else if(categoryFilter !== 'All'){
-            newViewableQuestions = newViewableQuestions.filter((question) => question.category === categoryFilter);
+            newViewableQuestions = newViewableQuestions.filter((question) => question.topic === categoryFilter);
         }
 
         setViewableQuestions(newViewableQuestions);
