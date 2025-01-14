@@ -3,10 +3,43 @@ import styles from '../../styles/Questions.module.css'
 
 import QuestionTableEntry from './QuestionTableEntry.jsx';
 import QuestionAddTableEntry from './QuestionAddTableEntry.jsx';
+import { useState,useEffect } from 'react';
 
 
 
 const QuestionDisplay = ({questions, competitionTitle}) => {
+
+    const [viewableQuestions, setViewableQuestions] = useState(questions);
+    const [difficultyFilter, setDifficultyFilter] = useState('All');
+    const [categoryFilter, setCategoryFilter] = useState('All');
+
+    //if the category or difficulty filter changes update the viewable questions
+    useEffect(() => {
+        handleViewableQuestions();
+    },[difficultyFilter,categoryFilter]);
+
+
+
+
+    const handleViewableQuestions = () => {
+        let newViewableQuestions = questions;
+
+        if(difficultyFilter !== 'All'){
+            newViewableQuestions = newViewableQuestions.filter((question) => question.difficulty === difficultyFilter);
+        }
+        else if(categoryFilter !== 'All'){
+            newViewableQuestions = newViewableQuestions.filter((question) => question.category === categoryFilter);
+        }
+
+        setViewableQuestions(newViewableQuestions);
+
+
+
+
+    }
+
+
+
 
 
     //decides if the question is to be displayed in a table or a form
@@ -15,21 +48,39 @@ const QuestionDisplay = ({questions, competitionTitle}) => {
             return (<QuestionTableEntry  question={question}/>);
         }
         return( <QuestionAddTableEntry  question={question} competitionTitle= {competitionTitle}/>);
-      
-
-
-
+    
     }
 
+    const handleChange = (event,setter) => {
+        setter(event.target.value)
+    };
+  
 
 
     return (<>
-    {
-        //for every question in the questions array create add it to the display table
-    }
+            <select value={difficultyFilter} onChange={event => handleChange(event,setDifficultyFilter)}>
+                <option value="All">{"All"}</option>
+                <option value="Easy">{"Easy"}</option>
+                <option value="Medium">{"Medium"}</option>
+                <option value="Hard">{"Hard"}</option>
+            </select>
+
+            <select value={categoryFilter} onChange={event => handleChange(event,setCategoryFilter)}>
+                <option value="All">{"All"}</option>
+                <option value="Geometry">{"Geometry"}</option>
+                <option value="Algebra">{"Algebra"}</option>
+                <option value="Waves">{"Waves"}</option>
+                <option value="Mechanics">{"Mechanics"}</option>
+            </select>
+
+
+        
+            {
+                //for every question in the questions array create add it to the display table
+            }
         <div className={styles.questionsContainer}>
-            {(questions && questions.length > 0) ? 
-                (questions.map((question) => {
+            {(viewableQuestions && viewableQuestions.length > 0) ? 
+                (viewableQuestions.map((question) => {
                     return handleQuestionTableEntry(question)
                 })):
                 (<h2 className={styles.questionParram}>No questions available</h2>)
