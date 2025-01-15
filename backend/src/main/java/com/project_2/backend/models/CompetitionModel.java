@@ -6,8 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 
 @Document
@@ -68,8 +66,7 @@ public class CompetitionModel {
     public String getDate() {
         if(date != null){
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            String formattedDate = formatter.format(date);
-            return formattedDate;
+            return formatter.format(date);
         } else{
             return null;
         }
