@@ -11,6 +11,7 @@ const CompetitionFillout = ({competition}) =>{
     const[questions,setQuestions] = useState();
     const[started,setStarted] = useState(false);
     const[hasFinishedAttempt, setHasFinishedAttempt] = useState(false);
+    const[OutOfTimeFrame, setOutOfTimeFrame] = useState(false);
 
     //map to store the answers for the questions
     let map = new Map([]);
@@ -53,7 +54,27 @@ const CompetitionFillout = ({competition}) =>{
     useEffect(() =>{
         fetchQuestionsForCompetition()
         checkUserFinished()
+        CheckInTimeFrame()
     },[])
+
+    
+    const  CheckInTimeFrame = () => {
+        let deadline = getDeadline();
+        let currentTime = new Date().getTime();
+        let startTime = 0;
+        if(competition.date &&competition.startTime ){
+            startTime = new Date(competition.date.split("/")[2],competition.date.split("/")[1]-1,competition.date.split("/")[0],competition.startTime.split(":")[0],competition.startTime.split(":")[1]).getTime();
+
+
+        }
+            
+        if(currentTime > deadline){
+            setOutOfTimeFrame(true)
+        }else if(currentTime <startTime){
+            setOutOfTimeFrame(true)
+        }
+
+    }
 
     const toggleStart = () => {
         setStarted(!started)
@@ -130,8 +151,8 @@ const CompetitionFillout = ({competition}) =>{
                     </>
                 :
                 (   //if the user has not started the competition show the start button or if the user has already finished the competition show a message
-                    hasFinishedAttempt ?<h1 className={style.title}>Competition has Been Completed</h1>
-                    :<button className={style.startButton} onClick={(e) => {toggleStart()} }>Start Competition</button>)
+                    (hasFinishedAttempt) ?<h1 className={style.title}>Competition has Been Completed</h1>
+                    : (OutOfTimeFrame ?<h1 className={style.title}>Please wait for the competition start time</h1> : <button className={style.startButton} onClick={(e) => {toggleStart()} }>Start Competition</button>))
                       
                 
             }

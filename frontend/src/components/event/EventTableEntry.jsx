@@ -88,21 +88,26 @@ const EventTableEntry = ({event,user,enrolled}) => {
         <div className={styles.eventTableListingBox}>
             <h2 className={styles.eventName}>{event.name}</h2>
             <h2 className={styles.eventDate}>{event.date}</h2>
-            <button className={styles.eventViewButton} onClick={(e) => {togglePopup(e)}}>View</button>
             
-            {!user && !competition && <button className={styles.eventViewButton} onClick={(e) => {toggleCompetitionPopup(e)}}>Add Competition</button>}
-            {!user && competition && <button className={styles.eventViewButton} onClick={(e) => {toggleGenerateResults(e)}}>Generate Results</button>}
+            <div className={styles.eventButtonContainer}>
+                <button className={styles.eventViewButton} onClick={(e) => {togglePopup(e)}}>View Event</button>
+                
+                {!user && !competition && <button className={styles.eventViewButton} onClick={(e) => {toggleCompetitionPopup(e)}}>Add Competition</button>}
+                {!user && competition && <button className={styles.eventViewButton} onClick={(e) => {toggleGenerateResults(e)}}>Generate Results</button>}
 
 
-            {user && competition && <button className={styles.eventViewButton} onClick={(e) => {toggleCompetitionViewPopuup(e)}}>View Competition</button>}
-            {/**If the user is not logged in, show the create account button */}
-            {user && user.length === 0 && <button className={styles.eventSignInButton} onClick={(e) =>{handleSignUp(e)}}>Create Account</button>}
+                {user && competition && <button className={styles.eventViewButton} onClick={(e) => {toggleCompetitionViewPopuup(e)}}>View & Start Competition</button>}
+                {/**If the user is not logged in, show the create account button */}
+                {user && user.length === 0 && <button className={styles.eventSignInButton} onClick={(e) =>{handleSignUp(e)}}>Create Account</button>}
 
-            {/**If the user is logged in and has not joined the event, show the join button */}
-            {user && user.name && !enrolledUser && <button className={styles.eventViewButton} onClick={(e) =>{handleEnroll(e)}}>Join</button>}
+                {/**If the user is logged in and has not joined the event, show the join button */}
+                {user && user.name && !enrolledUser && <button className={styles.eventViewButton} onClick={(e) =>{handleEnroll(e)}}>Join</button>}
 
-            {/**If the user is logged in and has joined the event, show the joined div */}
-            {user && enrolledUser && <div className={styles.enrolledDiv}>Joined</div>}
+                {/**If the user is logged in and has joined the event, show the joined div */}
+                {user && enrolledUser && <div className={styles.enrolledDiv}>Joined</div>}
+
+            </div>
+           
 
             {/** displays the popup for the current event**/}
             {popupOpen && <EventDetailsPopup togglePopup={togglePopup} event={event}/>}

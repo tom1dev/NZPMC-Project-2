@@ -41,7 +41,9 @@ const GeneratedResults = ({togglePopup, competition}) => {
 
                     <h2 className={style.popupParram}>Generated Results</h2>       
                     <div className={style.resultContainer}>
-                        {questions&& attempts && attempts.map((attempt,index) => {return <UserResult key={index}  attempt = {attempt} questions = {questions}/>})}
+                        {(questions.length>0&& attempts.length>0)? attempts.map((attempt,index) => {return <UserResult key={index}  attempt = {attempt} questions = {questions}/>}):
+                        
+                            <h2 className={style.popupParram}>No Results</h2>}
                     </div>    
                       
                     <button className={style.popupCloseButton} onClick={(e) => togglePopup()}>Close</button>

@@ -3,8 +3,10 @@
     width:100%;
     border:none;
     box-sizing: border-box;
-
+    align-items: start;
+    justify-content: start;
 }
+
 .addQuestionContainer{
     display: inline-flex;
     justify-content: center;
@@ -31,16 +33,43 @@
 }
 
 .questionContainer{
-    margin: 0;
+    margin: 0 1vw 1vh 1vw;
+    box-sizing: border-box;
+    display: flex; 
+    justify-content: start;
+    gap:2vw;
+    width: 96%;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
+.questionMainParramContainer{
+    
     box-sizing: border-box;
     display: block; 
-    justify-content: start;
-    width: 100%;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
     padding: 10px;
-    border: 1px solid black;
+    border-right: 1px solid black;
 }
+.questionOptionsContainer{
+    display: block;
+    gap: 1vw;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    padding: 1vh 1vw;
+    overflow:auto;
+    height: fit-content;
+    box-sizing: border-box;
+}
+
+
 .questionParram{
-    color:black;
+    text-align: start;
+    color: grey;
     font-size:20px;
 }
 
@@ -50,6 +79,8 @@
     gap: 1vw;
     padding: 1vh 1vw;
     box-sizing: border-box;
+    border-bottom: 3px solid black;
+    margin-bottom: 2vh;
 }
 
 .filterInput{

@@ -59,13 +59,15 @@ const CompetitionDetailsPopup = ({setViewPopupOpen, competition,hasJoinedEvent})
         <div className={style.popupWindow}>
             <div className={style.popupContainer}>
                 
-                    <h className={style.popupTitle}>Competition Details</h>
-                    
+                    <h className={style.popupTitle}>Competition</h>
                     <h2 className={style.popupParram}>Name : {competition.title}</h2>
-                    <h2 className={style.popupParram}>Number Of Questions: {questionAmount}</h2>
-                    <h2 className={style.popupParram}>Date:  {competition.date}</h2>
-                    <h2 className={style.popupParram}>Start Time: {competition.startTime}</h2>
-                    <h2 className={style.popupParram}>Duration: {competition.duration}</h2>
+                    
+                    <Dropdown DropdownTitle="Competition Details">
+                        <h2 className={style.popupParram}>Number Of Questions: {questionAmount}</h2>
+                        <h2 className={style.popupParram}>Date:  {competition.date}</h2>
+                        <h2 className={style.popupParram}>Start Time: {competition.startTime}</h2>
+                        <h2 className={style.popupParram}>Duration: {competition.duration}</h2>\
+                    </Dropdown>
 
                     
 

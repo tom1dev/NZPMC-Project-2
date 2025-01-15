@@ -15,7 +15,9 @@ const UserTableEntry = ({user}) => {
         <div className={styles.eventTableListingBox}>
             <h2 className={styles.eventName}>{user.name}</h2>
             <h2 className={styles.eventLocation}>{user.email}</h2>
-            <button className={styles.eventViewButton} onClick={()=>{togglePopup()}}>View</button>
+            <div className={styles.eventButtonContainer}>
+                <button className={styles.eventViewButton} onClick={()=>{togglePopup()}}>View</button>
+            </div> 
             {showPopup && <UserDetailsPopup showPopup={showPopup} togglePopup={togglePopup} user={user}/>}
 
 

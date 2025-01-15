@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const CountdownTimer = ({ FinishTime, handleTimeout }) => {
+const CountdownTimer = ({ FinishTime, handleTimeOut }) => {
     const [time, setTime] = useState({
         hours: 0,
         minutes: 0,
@@ -24,7 +24,7 @@ const CountdownTimer = ({ FinishTime, handleTimeout }) => {
         
         //if the time is up call the handleTimeout function
         if (timeLeftMS < 10) {
-            handleTimeout();
+            handleTimeOut();
         }
 
         let hours = Math.floor(timeLeftMS / 3600000);
