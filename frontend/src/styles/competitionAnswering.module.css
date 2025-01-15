@@ -1,5 +1,7 @@
 .startButton{
-    width: 20%;
+    width: fit-content;
+    align-self: end;
+    padding: 0 2vw;
     float: right;
     margin: 0 0 1vw 1vw;
 }
