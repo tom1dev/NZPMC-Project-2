@@ -33,7 +33,11 @@ public class QuestionModel {
     }
 
     public void setDifficulty(String difficulty) {
-        this.difficulty = Difficulty.valueOf(difficulty);;
+        try{
+            this.difficulty = Difficulty.valueOf(difficulty);
+        }catch (Exception e){
+            this.difficulty = null;
+        }
     }
 
     public Topic getTopic() {
@@ -41,7 +45,11 @@ public class QuestionModel {
     }
 
     public void setTopic(String topic) {
-        this.topic = Topic.valueOf(topic);
+        try{
+            this.topic = Topic.valueOf(topic);
+        }catch (Exception e){
+            this.topic = null;
+        }
     }
 
     public String getTitle() {

@@ -55,14 +55,13 @@ public class AttemptService {
         int[] duration = Arrays.stream(competitionModel.getDuration().split(":")).mapToInt(Integer::parseInt).toArray();
         LocalDateTime competitionEnd = LocalDateTime.parse(date +" "+ startTime, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")).plusHours(duration[0]).plusMinutes(duration[1]).plusMinutes(1);
 
+
+        //if the attempt was submitted in the competition timeframe save it.
         if(now.isBefore(competitionEnd) && now.isAfter(competitionStart)){
             attemptRepository.save(attempt);
         }else{
             throw new Exception();
         }
-
-
-
 
     }
 

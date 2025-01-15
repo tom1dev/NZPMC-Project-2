@@ -16,7 +16,7 @@
     border:#7f7f7f  solid  3px;
     background-color: white;
     border-radius: 10px;
-    width: 100%;
+    width: 98%;
     padding: 0;
     margin: 0 0 1vh 0;
     
@@ -31,6 +31,16 @@
 
 
 }
+
+.answersHeaderContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vw;
+    margin: 0;
+    border-bottom: solid black 2px;
+}
+
 .answerTitle{
     color: black;
 }
