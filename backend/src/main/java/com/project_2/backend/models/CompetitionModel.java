@@ -16,7 +16,7 @@ public class CompetitionModel {
     private Date date;
 
     private LocalTime startTime;
-    private LocalTime endTime;
+    private LocalTime duration;
 
     public String getStartTime() {
         return getStringFromTime(startTime);
@@ -26,24 +26,31 @@ public class CompetitionModel {
         this.startTime = getTimeFromString(startTime);
     }
 
-    public String getEndTime() {
-        return getStringFromTime(endTime);
+    public String getDuration() {
+        return getStringFromTime(duration);
     }
 
     public void setEndTime(String endTime) {
-        this.endTime = getTimeFromString(endTime);
+        this.duration = getTimeFromString(endTime);
     }
 
     public LocalTime getTimeFromString(String time){
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        return LocalTime.parse(time,formatter);
-
+        try{
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            return LocalTime.parse(time, formatter);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public String getStringFromTime(LocalTime time){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        return time.format(formatter);
+          if(time == null){
+              return null;
+          }
+
+          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+          return time.format(formatter);
     }
 
     private String[] QuestionIds;

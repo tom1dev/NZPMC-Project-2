@@ -4,11 +4,15 @@ import style from '../../styles/miscItems.module.css'
 
 const DurationPicker = ({ duration, setDuration }) => {
     const [DisplayedDuration, setDisplayedDuration] = useState(duration)
-    const [isMinutes, setIsMinutes] = useState(true)
+    const [isMinutes, setIsMinutes] = useState(false)
+
+    useEffect(() => {
+        setDuration(convertToMinutes(DisplayedDuration, isMinutes))
+    }, [DisplayedDuration])
 
     useEffect(() => {
         handleDurationChange(DisplayedDuration)
-    }, [DisplayedDuration,isMinutes])
+    }, [isMinutes])
 
     const convertToMinutes = (duration, isMinutes) => {
         if (isMinutes) {
@@ -26,10 +30,16 @@ const DurationPicker = ({ duration, setDuration }) => {
         else if(!isMinutes && currentDuration > 24){    
             setDisplayedDuration(24)
         }else{
-            setDisplayedDuration(event.target.value)
+            setDisplayedDuration(currentDuration)
         }
+    }
 
-        setDuration(convertToMinutes(DisplayedDuration, isMinutes))
+    const handleIsMinutesChange = (value) => {
+        if(value === "true"){
+            setIsMinutes(true)
+        }else{
+            setIsMinutes(false)
+        }
     }
 
     return (
@@ -37,11 +47,7 @@ const DurationPicker = ({ duration, setDuration }) => {
             
             <input value={DisplayedDuration} type='number'  onChange={(e)=> handleDurationChange(e.target.value)}/>
             <select value={isMinutes} onChange={(event) => {
-                if(event.target.value === 'true'){
-                    setIsMinutes(true)
-                }else{
-                    setIsMinutes(false)
-            }}}>
+                handleIsMinutesChange(event.target.value)}}>
                 <option value={true}>Minutes</option>
                 <option value={false}>Hours</option>
             </select>

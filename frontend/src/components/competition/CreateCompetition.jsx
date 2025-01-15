@@ -20,13 +20,19 @@ const CreateCompetition = () => {
     //submits the created event to the database
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (!title) {
-            alert("Please fill out the title to the competition.");
+        if (!title|| !date || !startTime || !duration) {
+            alert("Please fill all fields.");
             return;
         }
 
+   
+
+        const durationHours = Math.floor(duration/60).toString().padStart(2,"0");
+        const durationMinutes = Math.round(duration % 60).toString().padStart(2,"0");
+        let durationInTimeFormat = `${durationHours}:${durationMinutes}`;
+
         try{
-            await competitionService.createCompetition({title:title});
+            await competitionService.createCompetition({title:title,date: date,startTime: startTime,duration: durationInTimeFormat});
             window.location.reload();
         }catch (error){
             console.log(error);
@@ -54,15 +60,8 @@ const CreateCompetition = () => {
                 </div>
 
                 <div className={styleCreateEvent.parrameterBox}>
-
                     <h2 className={styleCreateEvent.parrameterTitle}>Duration</h2>
                     <DurationPicker duration={duration} setDuration={setDuration}/>
-                </div>
-                
-        
-                <div className={styleCreateEvent.parrameterBox}>
-                    <h2 className={styleCreateEvent.parrameterTitle}>Date</h2>
-                    <input className={styleCreateEvent.parrameterInput} value={date} placeholder='mm/dd/yyyy'  onChange={(event) =>handleVariableChange(event,setDate)}/>
                 </div>
 
                 <button type="submit" className={styleCreateEvent.eventSubmitButton} >Create Competition</button>
