@@ -32,6 +32,13 @@
 .eventSubmitButton{
     width:fit-content;
     align-self: end;
+    font-size: 20px;
+    background-color: #4ec263;
+    height: fit-content;
     padding: 1vh 2vh;
     margin:3vh 1vw 0  0;
+}
+.eventSubmitButton:hover{
+    background-color: #3e9c4f;
+    cursor: pointer;
 }

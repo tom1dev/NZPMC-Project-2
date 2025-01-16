@@ -21,7 +21,10 @@
     border-radius: 15px;
     background-color: #64B3C9;
     color: #ffffff;
-    font-size: 24px;
+    font-size: 20px;
+    height: fit-content;
+    align-content: center;
+    justify-content: center;
     font-weight: bold;
     text-decoration: none;
     padding: 1vh 6vh 1vh 6vh;

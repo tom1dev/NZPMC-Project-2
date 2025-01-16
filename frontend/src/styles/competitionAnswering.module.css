@@ -2,8 +2,13 @@
     width: fit-content;
     align-self: end;
     padding: 0 2vw;
+    background-color: #4ec263;
     float: right;
     margin: 0 0 1vw 1vw;
+}
+.startButton:hover{
+    background-color: #3e9c4f;
+    cursor: pointer;
 }
 .title{
     color: black;
