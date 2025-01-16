@@ -2,17 +2,44 @@ import style from '../../styles/UserPopup.module.css';
 import {useState,useEffect} from 'react';
 
 import competitionService from '../../services/competitionService';
+import Dropdown from '../misc/Dropdown';
 
 import CreateQuestion from './CreateQuestion';
+import QuestionDisplay from './TableDisplay/QuestionDisplay.jsx';
 
 const AddQuestionPopup = ({competition,setQuestionPopupOpen}) => {
+    const [questions, setQuestions] = useState([]);
+
+    //gets questions for the competition
+    useEffect(() => {
+        const fetchQuestions = async () => {
+            try {
+                const gottenQuestions = await competitionService.getAvialableQuestionsForCompetition(competition.title);
+                setQuestions(gottenQuestions);
+            } catch (error) {
+                console.log('Error fetching event user amount:', error);
+            }
+        };
+        fetchQuestions();
+
+
+    },[]);
+
 
  return (
         <div className={style.popupWindow}>
             <div className={style.popupContainer}>
                 
                     <h className={style.popupTitle}>Add Question</h>
-                    <h2 className={style.popupParram}>Competition Title:{competition.title}</h2>
+                    <h2 className={style.popupParram}>Competition Title: {competition.title}</h2>
+                    
+                    {
+                        //displays questions that are already in the competition
+                    }
+                    <Dropdown DropdownTitle="Add An Exsisting Question">
+                                <QuestionDisplay questions={questions} competitionTitle = {competition.title}/>
+                    </Dropdown>
+
 
                     <CreateQuestion competition={competition}/>
 

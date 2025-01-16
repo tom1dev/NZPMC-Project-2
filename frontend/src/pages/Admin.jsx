@@ -1,12 +1,12 @@
 import styles from '../styles/Landing.module.css'
 import { createContext,useEffect, useState } from 'react';
 import CreateEvent from '../components/event/CreateEvent.jsx';
-import EventDisplay from '../components/event/EventDisplay.jsx'
+import EventDisplay from '../components/event/TableDisplay/EventDisplay.jsx'
 import SideBar from '../components/sideBar/SideBar.jsx';
 import UserDisplay from '../components/user/UserDisplay.jsx';
 import { useNavigate } from "react-router-dom";
 import CreateCompetition from '../components/competition/CreateCompetition.jsx';
-import CompetitionDisplay from '../components/competition/CompetitionDisplay.jsx';
+import CompetitionDisplay from '../components/competition/TableDisplay/CompetitionDisplay.jsx';
 import Dropdown from '../components/misc/Dropdown.jsx';
 import userService from '../services/userService';
 const Admin = () => {
@@ -47,9 +47,9 @@ const Admin = () => {
             <div className={styles.landingContentContainer}>
                 <h1 className={styles.landingPageTitle}>Admin Page</h1>
                 <UserDisplay />
-                <CreateCompetition />
+                
                 <CompetitionDisplay />
-                <CreateEvent />
+                
                 <EventDisplay />
 
             </div>

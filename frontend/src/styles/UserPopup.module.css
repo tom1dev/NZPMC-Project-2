@@ -41,14 +41,20 @@
 .dropdownContainer{
     position: relative;
     display:block;
-    margin:auto;
-    width: 90%;
-    margin-right: 4vw;
 }
 
 .resultContainer{
     display: block;
     border: 3px solid black;
     border-radius: 15px;
+    width: 90%;
+    padding:0.5vh 2.75vw;
+    margin-top: 1vh;
+}
 
+.MetricsContainer{
+    display: block;
+    border: 3px solid black;
+    border-radius: 15px;
+    margin-top: 1vh;
 }

@@ -45,9 +45,9 @@ body {
 .eventsContainer{
     margin-top: 2vh;
     position: relative;
-    height: auto;
+    height: max-content;
     display: flex;
-    min-height: 25vh;
+    min-height: fit-content;
     flex-direction: column;
     align-items: center;
     padding: 2vh;
@@ -55,6 +55,22 @@ body {
     background-color: #ffffff;
     border:#7f7f7f  solid  3px;
 }
+
+.createEventContainer{
+    
+        position: relative;
+        height: max-content;
+        display: flex;
+        min-height: fit-content;
+        flex-direction: column;
+        align-items: center;
+        padding: 2vh;
+        border-radius: 20px;   
+        background-color: #ffffff;
+       
+    
+}
+
 .eventViewTitleBox{
     display: flex;
     align-items: start;
@@ -69,19 +85,26 @@ body {
 
 .eventTableListingBox{
     display: flex;
-    flex-wrap: wrap;
     padding: 1vh 1vh 1vh 2vh;
     align-self: center;
     margin: 0.5vh 0vw;
-   
     border-radius: 20px;
-    
+    justify-content:baseline;
+    align-items: center; 
     width: 96%;   
     height: inherit;
 
     background-color: #ffffff;
     border:#7f7f7f  solid  2px;
     
+}
+.eventButtonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 0.5vh;
+    min-width: 40%;
+    justify-content: flex-end; 
+    height: inherit;
 }
 
 .eventName{
@@ -105,7 +128,7 @@ body {
 .eventDate{
     color:#000000;
     margin-right: 0;
-    width: 13%;
+    width: 20%;
     text-align: left;
     overflow: auto;
     font-size: 16px;
@@ -114,7 +137,7 @@ body {
 
 .eventTitleName{
     padding: 0;
-    width: 39%;
+    width: 40%;
     text-align: left;
     color: white;
     font-size: 16px;

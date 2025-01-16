@@ -1,7 +1,9 @@
 .startButton{
-    width: 30%;
-    align-self: center;
-    margin: 0 0 1vw 0;
+    width: fit-content;
+    align-self: end;
+    padding: 0 2vw;
+    float: right;
+    margin: 0 0 1vw 1vw;
 }
 .title{
     color: black;
@@ -12,11 +14,11 @@
 
 .answersContainer{
     position: relative;
-    display: inline-block;
+    display: block;
     border:#7f7f7f  solid  3px;
     background-color: white;
     border-radius: 10px;
-    width: 100%;
+    width: 98%;
     padding: 0;
     margin: 0 0 1vh 0;
     
@@ -25,12 +27,33 @@
 .questionContainer{
     margin: 1vw;
     padding: 1vw;
+    display: block;
     border: solid black 2px;
-
-
-
-
+    border-radius: 10px;
 }
+
+.selecter{
+    width: 100%;
+    height: 100%;
+    padding: 1vw;
+    margin: 0;
+    font-size: 1vw;
+    border: none;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+}
+
+.answersHeaderContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vw;
+    margin: 0;
+    border-bottom: solid black 2px;
+}
+
 .answerTitle{
+    text-align:left;
+    margin:0.5vh 0 0 0;
     color: black;
 }
