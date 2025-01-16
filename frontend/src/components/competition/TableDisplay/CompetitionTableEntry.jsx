@@ -1,10 +1,9 @@
 import styles from '../../../styles/Landing.module.css'
-import {useState,useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import AddQuestionPopup from '../../question/AddQuestionPopup.jsx';
 import CompetitionDetailsPopup from '../popups/CompetitionDetailsPopup.jsx';
 
-const CompetitionTableEntry = ({competition}) => {
+const CompetitionTableEntry = ({ competition }) => {
     const [viewPopupOpen, setViewPopupOpen] = useState(false);
     const [questionPopupOpen, setQuestionPopupOpen] = useState(false);
 
@@ -15,46 +14,37 @@ const CompetitionTableEntry = ({competition}) => {
     }
 
 
-
     return (
-    <>
+        <>
 
             <div className={styles.eventTableListingBox}>
-                
-                    <h2 className={styles.eventName}>{competition.title}</h2>
-                    <h2 className={styles.eventDate}>{competition.questionIds?competition.questionIds.length:0 }</h2>
 
+                <h2 className={styles.eventName}>{competition.title}</h2>
+                <h2 className={styles.eventDate}>{competition.questionIds ? competition.questionIds.length : 0}</h2>
 
-                
-                    
-                
+                {
+                    //buttons toggle the question and view popups
+                }
                 <div className={styles.eventButtonContainer}>
-                    <button className={styles.eventViewButton} onClick={(e) => {togglePopup(questionPopupOpen,setQuestionPopupOpen)}}>AddQuestion</button>
-                    <button className={styles.eventViewButton} onClick={(e) => {togglePopup(viewPopupOpen,setViewPopupOpen)}}>View</button>
-
+                    <button className={styles.eventViewButton} onClick={(e) => { togglePopup(questionPopupOpen, setQuestionPopupOpen) }}>AddQuestion</button>
+                    <button className={styles.eventViewButton} onClick={(e) => { togglePopup(viewPopupOpen, setViewPopupOpen) }}>View</button>
                 </div>
-                    
+
             </div>
 
             {   //toggles the question popup
                 questionPopupOpen &&
-                <AddQuestionPopup setQuestionPopupOpen= {setQuestionPopupOpen} competition ={competition}/>
+                <AddQuestionPopup setQuestionPopupOpen={setQuestionPopupOpen} competition={competition} />
 
             }
 
             {   //toggles the competition popup
                 viewPopupOpen &&
-                <CompetitionDetailsPopup setViewPopupOpen= {setViewPopupOpen} competition ={competition}/>
+                <CompetitionDetailsPopup setViewPopupOpen={setViewPopupOpen} competition={competition} />
             }
 
-    </>
-
-
-
+        </>
     );
-
-
-
 }
 
 export default CompetitionTableEntry;

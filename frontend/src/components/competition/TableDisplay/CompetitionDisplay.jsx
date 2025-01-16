@@ -1,9 +1,5 @@
-
 import styles from '../../../styles/Landing.module.css'
 import { useEffect, useState } from 'react';
-
-import userService from '../../../services/userService.js';
-import eventService from '../../../services/eventService.js';
 import CompetitionDetailsParramTitles from './CompetitionDetailsParramTitles.jsx';
 import CompetitionTableEntry from './CompetitionTableEntry.jsx';
 import competitionService from '../../../services/competitionService.js';
@@ -45,14 +41,14 @@ const CompetitionDisplay = () => {
                 <CreateCompetition />
             </Dropdown>
 
-            <CompetitionDetailsParramTitles/>
+            <CompetitionDetailsParramTitles />
 
 
             {
                 //for every competition in the competitions array, display the competition as a table entry
                 competitions && competitions.length > 0 && competitions.map((competition) => {
-                return <CompetitionTableEntry  competition={competition}/>
-            })}
+                    return <CompetitionTableEntry competition={competition} />
+                })}
         </div>
 
     </>)

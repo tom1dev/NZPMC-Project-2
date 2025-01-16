@@ -67,18 +67,18 @@ const EventDisplay = ({ user }) => {
             <h2 className={styles.eventTitle}>Events</h2>
 
             
-            {!user && (
-                <Dropdown DropdownTitle="Create Event">
-                    <CreateEvent />
-
-
-                </Dropdown>
-            )}
+            {//if admin is logged in, show the create event dropdown
+                !user && (
+                    <Dropdown DropdownTitle="Create Event">
+                        <CreateEvent />
+                    </Dropdown>
+                )}
 
 
             <EventDetailsParramTitles/>
 
-            {events && events.length > 0 && events.map((event) => {
+            {   //for every event in the events array, create a table entry
+                events && events.length > 0 && events.map((event) => {
                 return <EventTableEntry key={event.id} event={event} user={user} enrolled={isUserEvent(event)} />
             })}
         </div>

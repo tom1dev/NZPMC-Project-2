@@ -10,7 +10,7 @@ import QuestionDisplay from './TableDisplay/QuestionDisplay.jsx';
 const AddQuestionPopup = ({competition,setQuestionPopupOpen}) => {
     const [questions, setQuestions] = useState([]);
 
-
+    //gets questions for the competition
     useEffect(() => {
         const fetchQuestions = async () => {
             try {
@@ -23,7 +23,6 @@ const AddQuestionPopup = ({competition,setQuestionPopupOpen}) => {
         fetchQuestions();
 
 
-
     },[]);
 
 
@@ -34,6 +33,9 @@ const AddQuestionPopup = ({competition,setQuestionPopupOpen}) => {
                     <h className={style.popupTitle}>Add Question</h>
                     <h2 className={style.popupParram}>Competition Title: {competition.title}</h2>
                     
+                    {
+                        //displays questions that are already in the competition
+                    }
                     <Dropdown DropdownTitle="Add An Exsisting Question">
                                 <QuestionDisplay questions={questions} competitionTitle = {competition.title}/>
                     </Dropdown>

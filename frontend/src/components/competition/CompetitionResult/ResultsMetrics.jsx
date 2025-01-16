@@ -1,11 +1,11 @@
 import styles from "../../../styles/competitionResults.module.css"
-import {useState, useEffect} from 'react';
-import { BarChart } from '@mui/x-charts/BarChart'; 
-import { use } from "react";
+import { useState, useEffect } from 'react';
+import { BarChart } from '@mui/x-charts/BarChart';
 
-const ResultsMetrics = ({ questions, questionScoreMap ,userScoreMap }) => {
-    const[isUserResultsGraph, setIsUserResultsGraph] = useState(false);
-    const[textMetrics, setTextMetrics] = useState({
+
+const ResultsMetrics = ({ questions, questionScoreMap, userScoreMap }) => {
+    const [isUserResultsGraph, setIsUserResultsGraph] = useState(false);
+    const [textMetrics, setTextMetrics] = useState({
         mean: 0,
         median: 0,
         high: 0,
@@ -14,9 +14,9 @@ const ResultsMetrics = ({ questions, questionScoreMap ,userScoreMap }) => {
 
     useEffect(() => {
         calculateTextMetrics();
-    },[userScoreMap]);
+    }, [userScoreMap]);
 
-
+    //calculates the mean, median, high and low of the user scores
     const calculateTextMetrics = () => {
 
         let newTextMetrics = {
@@ -27,136 +27,138 @@ const ResultsMetrics = ({ questions, questionScoreMap ,userScoreMap }) => {
         }
 
         //if there are no users, return
-        if(userScoreMap.size === 0){
+        if (userScoreMap.size === 0) {
             return;
         }
 
         userScoreMap.values().forEach((value) => {
-            newTextMetrics.mean += value/questions.length;
+            newTextMetrics.mean += value / questions.length;
         });
 
-        newTextMetrics.mean = newTextMetrics.mean/userScoreMap.size;
+        newTextMetrics.mean = newTextMetrics.mean / userScoreMap.size;
 
-        let sortedValues = Array.from(userScoreMap.values()).sort((a,b) => a-b);
-        newTextMetrics.median = sortedValues[Math.floor(sortedValues.length/2)]/questions.length;
-        
+        //sorts the users scores to find the median, high and low
+        let sortedValues = Array.from(userScoreMap.values()).sort((a, b) => a - b);
+        newTextMetrics.median = sortedValues[Math.floor(sortedValues.length / 2)] / questions.length;
 
-        newTextMetrics.high = sortedValues[sortedValues.length-1];
+
+        newTextMetrics.high = sortedValues[sortedValues.length - 1];
         newTextMetrics.low = sortedValues[0];
 
 
         setTextMetrics(newTextMetrics);
 
-
     }
 
+    //separates the user scores into equal sized quadrents to be displayed on the graph
     const calculateUserResultsByQuad = (quadAmount) => {
         let data = [];
-        for(let i = 0; i<quadAmount; i++){
+
+        for (let i = 0; i < quadAmount; i++) {
             data.push(0);
         }
 
 
-        let quadSize = 100/quadAmount;
+        let quadSize = 100 / quadAmount;
 
         userScoreMap.values().forEach((value) => {
-            const userPercentage = value/questions.length * 100;
-            let quadIndex = Math.floor(userPercentage/quadSize);
+            const userPercentage = value / questions.length * 100;
+            let quadIndex = Math.floor(userPercentage / quadSize);
 
-            if(quadIndex === quadAmount){
-                quadIndex = quadAmount-1;
+            if (quadIndex === quadAmount) {
+                quadIndex = quadAmount - 1;
             }
             data[quadIndex] = data[quadIndex] + 1;
-            
-                
-            }
+
+
+        }
         );
 
         return data;
     };
 
-   
 
 
 
-        return(
-        <div className = {styles.resultsMetricsContainer}> 
-            <h1 className = {styles.title}>Results Metrics</h1>
-            <div className = {styles.textMetricsContainer}>
 
-                <h2 className = {styles.textMetric}>Mean: {textMetrics.mean} </h2>
-                <h2 className = {styles.textMetric}>Median: {textMetrics.median}</h2>
-                <h2 className = {styles.textMetric}>High: {textMetrics.high }</h2>
-                <h2 className = {styles.textMetric}>Low: {textMetrics.low}</h2>
-                <h2 className = {styles.textMetric}>Amount of Participants: {userScoreMap.size}</h2>
+    return (
+        <div className={styles.resultsMetricsContainer}>
+            <h1 className={styles.title}>Results Metrics</h1>
+            <div className={styles.textMetricsContainer}>
+
+                <h2 className={styles.textMetric}>Mean: {textMetrics.mean} </h2>
+                <h2 className={styles.textMetric}>Median: {textMetrics.median}</h2>
+                <h2 className={styles.textMetric}>High: {textMetrics.high}</h2>
+                <h2 className={styles.textMetric}>Low: {textMetrics.low}</h2>
+                <h2 className={styles.textMetric}>Amount of Participants: {userScoreMap.size}</h2>
 
 
 
 
             </div>
 
-            {isUserResultsGraph ? 
-            <>
-                <h2 className = {styles.graphTitle}>User Results Graph</h2>
-                <div className = {styles.graphContainer}>
-                    
-                    <BarChart
-                        xAxis={[
-                            {
-                            label: 'User Result Percentage',
-                            id: 'barCategories',
-                            data: ['0-20%', '20-40%', '40-60%', '60-80%', '80-100%'],
-                            scaleType: 'band',
-                            },
-                        ]}
-                        yAxis={[
-                            {
-                                label: 'Amount of Participants',
-                            }
-                        ]}
+            {isUserResultsGraph ?
+                <>
+                    <h2 className={styles.graphTitle}>User Results Graph</h2>
+                    <div className={styles.graphContainer}>
+
+                        <BarChart
+                            xAxis={[
+                                {
+                                    label: 'User Result Percentage',
+                                    id: 'barCategories',
+                                    data: ['0-20%', '20-40%', '40-60%', '60-80%', '80-100%'],
+                                    scaleType: 'band',
+                                },
+                            ]}
+                            yAxis={[
+                                {
+                                    label: 'Amount of Participants',
+                                }
+                            ]}
 
 
-                        series={[
-                            {
-                            data: calculateUserResultsByQuad(5),
-                            },
-                        ]}
-                    />
-                </div>
-            </>:
-            <> 
-            
-            
-                <h2 className = {styles.graphTitle}>Question Results Graph</h2>
+                            series={[
+                                {
+                                    data: calculateUserResultsByQuad(5),
+                                },
+                            ]}
+                        />
+                    </div>
+                </> :
+                <>
+
+
+                    <h2 className={styles.graphTitle}>Question Results Graph</h2>
                     {console.log(questionScoreMap)}
-                <div className = {styles.graphContainer}>
-                    <BarChart
-                        xAxis={[
-                            {
-                                label: 'Question Name',
-                            id: 'barCategories',
-                            data: Array.from(questionScoreMap.keys()),
-                            scaleType: 'band',
-                            },
-                        ]}
-                        yAxis={[
-                            {
-                                label: 'Total Times Answered Correctly',
-                            }
-                        ]}
+                    <div className={styles.graphContainer}>
+                        <BarChart
+                            xAxis={[
+                                {
+                                    label: 'Question Name',
+                                    id: 'barCategories',
+                                    data: Array.from(questionScoreMap.keys()),
+                                    scaleType: 'band',
+                                },
+                            ]}
+                            yAxis={[
+                                {
+                                    label: 'Total Times Answered Correctly',
+                                }
+                            ]}
 
-                        series={[
-                            {
-                            data: Array.from(questionScoreMap.values()),
-                            },
-                        ]}
-                    />
-                </div>
-            
-            </>}
-            
-            <button className = {styles.toggleButton} onClick = {() => setIsUserResultsGraph(!isUserResultsGraph)}>{isUserResultsGraph ? "Show Question Results Graph" : "Show User Results Graph"}</button>
-           
+                            series={[
+                                {
+                                    data: Array.from(questionScoreMap.values()),
+                                },
+                            ]}
+                        />
+                    </div>
+
+                </>}
+
+            <button className={styles.toggleButton} onClick={() => setIsUserResultsGraph(!isUserResultsGraph)}>{isUserResultsGraph ? "Show Question Results Graph" : "Show User Results Graph"}</button>
+
         </div>);
 }
 

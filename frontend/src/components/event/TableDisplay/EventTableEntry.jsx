@@ -1,5 +1,5 @@
 import styles from '../../../styles/Landing.module.css'
-import {useState,useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import userService from '../../../services/userService.js';
 import competitionService from '../../../services/competitionService.js';
 import EventDetailsPopup from '../EventDetailsPopup.jsx';
@@ -9,43 +9,37 @@ import CompetitionDetailsPopup from '../../competition/popups/CompetitionDetails
 import GeneratedResults from '../../competition/CompetitionResult/GeneratedResults.jsx';
 
 
-const EventTableEntry = ({event,user,enrolled}) => {
-    const [enrolledUser,setEnrolledUser] = useState(false);
+const EventTableEntry = ({ event, user, enrolled }) => {
+    const [enrolledUser, setEnrolledUser] = useState(false);
     const [popupOpen, setPopupOpen] = useState(false);
-    const [isCompetitionPopup, setIsCompetitionPopup] =  useState(false);
-    const [isCompetitionViewPopup, setIsCompetitionViewPopup] =  useState(false);
+    const [isCompetitionPopup, setIsCompetitionPopup] = useState(false);
+    const [isCompetitionViewPopup, setIsCompetitionViewPopup] = useState(false);
     const [viewGenerateDetails, setViewGenerateDetails] = useState(false);
     const [competition, setCompetition] = useState();
-
-
-    
     const navigate = useNavigate();
 
-    useEffect(() =>{
+    //gets the competition for the event
+    useEffect(() => {
         getCompetition();
+    }, []);
 
-
-    },[]);
-
-    const getCompetition = async() =>{
-        if(event.competitionTitle){
+    const getCompetition = async () => {
+        if (event.competitionTitle) {
             const competition = await competitionService.getCompetitionByTitle(event.competitionTitle);
             setCompetition(competition);
-
         }
-
     }
 
+    //sets the enrolled user
     useEffect(() => {
         setEnrolledUser(enrolled);
-    },[enrolled]);
-
+    }, [enrolled]);
 
     const addUserToEvent = async (userId, eventId) => {
-        try{
+        try {
             const res = await userService.addUserToEvent(userId, eventId);
             return true;
-        }catch (error){
+        } catch (error) {
             return false;
         }
     }
@@ -53,9 +47,9 @@ const EventTableEntry = ({event,user,enrolled}) => {
     //enrolls the user to the event
     const handleEnroll = (e) => {
         console.log("Enroll Clicked");
-        if(user && user.name){
-            const hasEnrolled = addUserToEvent(user.email,event.name);
-            if(hasEnrolled){
+        if (user && user.name) {
+            const hasEnrolled = addUserToEvent(user.email, event.name);
+            if (hasEnrolled) {
                 setEnrolledUser(true);
             }
         }
@@ -70,11 +64,11 @@ const EventTableEntry = ({event,user,enrolled}) => {
         setIsCompetitionPopup(!isCompetitionPopup);
     }
 
-    const toggleGenerateResults  = () => {
+    const toggleGenerateResults = () => {
         setViewGenerateDetails(!viewGenerateDetails)
     }
 
-    const toggleCompetitionViewPopuup = () =>{
+    const toggleCompetitionViewPopuup = () => {
         setIsCompetitionViewPopup(!isCompetitionViewPopup);
     }
 
@@ -84,43 +78,43 @@ const EventTableEntry = ({event,user,enrolled}) => {
 
 
     return (
-   
+
         <div className={styles.eventTableListingBox}>
             <h2 className={styles.eventName}>{event.name}</h2>
             <h2 className={styles.eventDate}>{event.date}</h2>
-            
+
             <div className={styles.eventButtonContainer}>
-                <button className={styles.eventViewButton} onClick={(e) => {togglePopup(e)}}>View Event</button>
-                
-                {!user && !competition && <button className={styles.eventViewButton} onClick={(e) => {toggleCompetitionPopup(e)}}>Add Competition</button>}
-                {!user && competition && <button className={styles.eventViewButton} onClick={(e) => {toggleGenerateResults(e)}}>Generate Results</button>}
+                <button className={styles.eventViewButton} onClick={(e) => { togglePopup(e) }}>View Event</button>
+
+                {!user && !competition && <button className={styles.eventViewButton} onClick={(e) => { toggleCompetitionPopup(e) }}>Add Competition</button>}
+                {!user && competition && <button className={styles.eventViewButton} onClick={(e) => { toggleGenerateResults(e) }}>Generate Results</button>}
 
 
-                {user && competition && <button className={styles.eventViewButton} onClick={(e) => {toggleCompetitionViewPopuup(e)}}>View & Start Competition</button>}
+                {user && competition && <button className={styles.eventViewButton} onClick={(e) => { toggleCompetitionViewPopuup(e) }}>View & Start Competition</button>}
                 {/**If the user is not logged in, show the create account button */}
-                {user && user.length === 0 && <button className={styles.eventSignInButton} onClick={(e) =>{handleSignUp(e)}}>Create Account</button>}
+                {user && user.length === 0 && <button className={styles.eventSignInButton} onClick={(e) => { handleSignUp(e) }}>Create Account</button>}
 
                 {/**If the user is logged in and has not joined the event, show the join button */}
-                {user && user.name && !enrolledUser && <button className={styles.eventViewButton} onClick={(e) =>{handleEnroll(e)}}>Join</button>}
+                {user && user.name && !enrolledUser && <button className={styles.eventViewButton} onClick={(e) => { handleEnroll(e) }}>Join</button>}
 
                 {/**If the user is logged in and has joined the event, show the joined div */}
                 {user && enrolledUser && <div className={styles.enrolledDiv}>Joined</div>}
 
             </div>
-           
+
 
             {/** displays the popup for the current event**/}
-            {popupOpen && <EventDetailsPopup togglePopup={togglePopup} event={event}/>}
+            {popupOpen && <EventDetailsPopup togglePopup={togglePopup} event={event} />}
 
 
             {   //toggles the competition popup
-                isCompetitionViewPopup	&&<CompetitionDetailsPopup setViewPopupOpen= {setIsCompetitionViewPopup} competition ={competition} hasJoinedEvent={enrolledUser}/>}
-            
+                isCompetitionViewPopup && <CompetitionDetailsPopup setViewPopupOpen={setIsCompetitionViewPopup} competition={competition} hasJoinedEvent={enrolledUser} />}
+
             {   //toggles the generate results popup   
-                viewGenerateDetails && <GeneratedResults togglePopup = {toggleGenerateResults} competition = {competition}/>}
-            
+                viewGenerateDetails && <GeneratedResults togglePopup={toggleGenerateResults} competition={competition} />}
+
             {   //toggles the competition event linkPopup 
-                !event.competitionTitle  && isCompetitionPopup && <CompetitionEventLinkPopup togglePopup ={toggleCompetitionPopup} event={event}/>}
+                !event.competitionTitle && isCompetitionPopup && <CompetitionEventLinkPopup togglePopup={toggleCompetitionPopup} event={event} />}
         </div>
     );
 

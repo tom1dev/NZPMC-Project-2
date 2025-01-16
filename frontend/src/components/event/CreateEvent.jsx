@@ -1,16 +1,16 @@
 import styles from '../../styles/Landing.module.css'
 import styleCreateEvent from '../../styles/CreateEvent.module.css';
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import eventService from '../../services/eventService.js';
 
 
 const CreateEvent = () => {
-    const [name,setName] = useState('');
-    const [date,setDate] = useState('');
-    const [description,setDescription] = useState('');
+    const [name, setName] = useState('');
+    const [date, setDate] = useState('');
+    const [description, setDescription] = useState('');
 
-    
-    const handleVariableChange = (event, setter) =>{
+
+    const handleVariableChange = (event, setter) => {
         setter(event.target.value)
     }
 
@@ -23,10 +23,10 @@ const CreateEvent = () => {
             return;
         }
 
-        try{
-            await eventService.createEvent({name:name,date: date,description: description});
+        try {
+            await eventService.createEvent({ name: name, date: date, description: description });
             window.location.reload();
-        }catch (error){
+        } catch (error) {
             console.log(error);
         }
 
@@ -34,31 +34,27 @@ const CreateEvent = () => {
 
     return (
         <div className={styles.createEventContainer}>
-            
-            <form   className={styleCreateEvent.createEventContainer} onSubmit={handleSubmit}>
-                
-                
+
+            <form className={styleCreateEvent.createEventContainer} onSubmit={handleSubmit}>
+
+
                 <div className={styleCreateEvent.parrameterBox}>
-                    <h2 className={styleCreateEvent.parrameterTitle}>Name</h2> 
-                    <input className={styleCreateEvent.parrameterInput} value={name}  onChange={(event) =>handleVariableChange(event,setName)}/>
+                    <h2 className={styleCreateEvent.parrameterTitle}>Name</h2>
+                    <input className={styleCreateEvent.parrameterInput} value={name} onChange={(event) => handleVariableChange(event, setName)} />
                 </div>
 
                 <div className={styleCreateEvent.parrameterBox}>
                     <h2 className={styleCreateEvent.parrameterTitle}>Date</h2>
-                    <input className={styleCreateEvent.parrameterInput} value={date} placeholder='mm/dd/yyyy'  onChange={(event) =>handleVariableChange(event,setDate)}/>
+                    <input className={styleCreateEvent.parrameterInput} value={date} placeholder='mm/dd/yyyy' onChange={(event) => handleVariableChange(event, setDate)} />
                 </div>
                 <div className={styleCreateEvent.parrameterBox}>
                     <h2 className={styleCreateEvent.parrameterTitle}>Description</h2>
-                    <input className={styleCreateEvent.parrameterInput} value={description}  onChange={(event) =>handleVariableChange(event,setDescription)}/>
+                    <input className={styleCreateEvent.parrameterInput} value={description} onChange={(event) => handleVariableChange(event, setDescription)} />
                 </div>
 
                 <button type="submit" className={styleCreateEvent.eventSubmitButton} >Create Event</button>
-                
-
 
             </form>
-
-
         </div>
     )
 
