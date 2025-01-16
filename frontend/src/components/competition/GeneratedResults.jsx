@@ -95,9 +95,10 @@ const GeneratedResults = ({togglePopup, competition}) => {
             <div className={style.popupContainer}>  
 
                     <h2 className={style.popupParram}>Generated Results</h2>       
-                    <div className={style.resultContainer}>
+                    <div className={style.MetricsContainer}>
                         <ResultsMetrics questions={questions} questionScoreMap={questionScoreMap} userScoreMap={userScoreMap}/>
-
+                    </div>    
+                    <div className={style.resultContainer}>
 
 
                         <Dropdown DropdownTitle="User Results ">

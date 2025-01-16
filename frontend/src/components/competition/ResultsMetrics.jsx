@@ -79,7 +79,18 @@ const ResultsMetrics = ({ questions, questionScoreMap ,userScoreMap }) => {
         return(
         <div className = {styles.resultsMetricsContainer}> 
             <h1 className = {styles.title}>Results Metrics</h1>
+            <div className = {styles.textMetricsContainer}>
 
+                <h2 className = {styles.textMetric}>Mean: {textMetrics.mean} </h2>
+                <h2 className = {styles.textMetric}>Median: {textMetrics.median}</h2>
+                <h2 className = {styles.textMetric}>High: {textMetrics.high }</h2>
+                <h2 className = {styles.textMetric}>Low: {textMetrics.low}</h2>
+                <h2 className = {styles.textMetric}>Amount of Participants: {userScoreMap.size}</h2>
+
+
+
+
+            </div>
 
             {isUserResultsGraph ? 
             <>
@@ -89,11 +100,19 @@ const ResultsMetrics = ({ questions, questionScoreMap ,userScoreMap }) => {
                     <BarChart
                         xAxis={[
                             {
+                            label: 'User Result Percentage',
                             id: 'barCategories',
                             data: ['0-20%', '20-40%', '40-60%', '60-80%', '80-100%'],
                             scaleType: 'band',
                             },
                         ]}
+                        yAxis={[
+                            {
+                                label: 'Amount of Participants',
+                            }
+                        ]}
+
+
                         series={[
                             {
                             data: calculateUserResultsByQuad(5),
@@ -111,11 +130,18 @@ const ResultsMetrics = ({ questions, questionScoreMap ,userScoreMap }) => {
                     <BarChart
                         xAxis={[
                             {
+                                label: 'Question Name',
                             id: 'barCategories',
                             data: Array.from(questionScoreMap.keys()),
                             scaleType: 'band',
                             },
                         ]}
+                        yAxis={[
+                            {
+                                label: 'Total Times Answered Correctly',
+                            }
+                        ]}
+
                         series={[
                             {
                             data: Array.from(questionScoreMap.values()),
@@ -127,27 +153,7 @@ const ResultsMetrics = ({ questions, questionScoreMap ,userScoreMap }) => {
             </>}
             
             <button className = {styles.toggleButton} onClick = {() => setIsUserResultsGraph(!isUserResultsGraph)}>{isUserResultsGraph ? "Show Question Results Graph" : "Show User Results Graph"}</button>
-
-
-
-            <div className = {styles.textMetricsContainer}>
-
-                <h2 className = {styles.textMetric}>Mean: {textMetrics.mean} </h2>
-                <h2 className = {styles.textMetric}>Median: {textMetrics.median}</h2>
-                <h2 className = {styles.textMetric}>High: {textMetrics.high }</h2>
-                <h2 className = {styles.textMetric}>Low: {textMetrics.low}</h2>
-                <h2 className = {styles.textMetric}>Amount of Participants: {userScoreMap.size}</h2>
-
-
-
-
-            </div>
-
-
-
-
-
-                        
+           
         </div>);
 }
 
