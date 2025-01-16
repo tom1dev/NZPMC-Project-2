@@ -51,7 +51,7 @@ public class EventService {
 
         int count = 0;
 
-        //goes through every user to see if they are apart of the event
+        //goes through every user to see if they are a part of the event
         for(UserModel user : users){
             if(user.getJoinedEvents().contains(eventID)){
                 count++;

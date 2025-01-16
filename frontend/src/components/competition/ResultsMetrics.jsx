@@ -26,6 +26,7 @@ const ResultsMetrics = ({ questions, questionScoreMap ,userScoreMap }) => {
             low: 0
         }
 
+        //if there are no users, return
         if(userScoreMap.size === 0){
             return;
         }

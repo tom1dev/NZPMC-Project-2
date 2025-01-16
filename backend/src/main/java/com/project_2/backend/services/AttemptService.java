@@ -41,17 +41,15 @@ public class AttemptService {
     }
 
     public void createNewAttempt(AttemptModel attempt) throws Exception {
-
+        //gets current time
         LocalDateTime now = LocalDateTime.now();
 
         CompetitionModel competitionModel = competitionService.getCompetitionByTitle(attempt.getCompetitionId());
-
         String date = competitionModel.getDate();
         String startTime = competitionModel.getStartTime();
 
-
+        //creates objects to define the start and finish time of the competition
         LocalDateTime competitionStart = LocalDateTime.parse(date +" "+ startTime, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
-
         int[] duration = Arrays.stream(competitionModel.getDuration().split(":")).mapToInt(Integer::parseInt).toArray();
         LocalDateTime competitionEnd = LocalDateTime.parse(date +" "+ startTime, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")).plusHours(duration[0]).plusMinutes(duration[1]).plusMinutes(1);
 
