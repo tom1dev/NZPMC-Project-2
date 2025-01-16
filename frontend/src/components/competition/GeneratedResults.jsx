@@ -33,32 +33,32 @@ const GeneratedResults = ({togglePopup, competition}) => {
     },[attempts,questions]);
 
     const calculateScore = () => {
-        const newQuestionScoreMap = new Map(questionScoreMap);
-        const newUserScoreMap = new Map(userScoreMap);
-
-
+        const newQuestionScoreMap = new Map();
+        const newUserScoreMap = new Map();
+        // Create a lookup map for questions by their title
+        const questionLookup = new Map(questions.map(question => [question.title, question]));
 
         attempts.forEach((attempt) => {
-                let amountRight = 0;
-                //if the attempt has attempts and questions are not empty then check if the user got the question right
-                if(attempt.attempts && questions && questions.length >0){
-                    Object.entries(attempt.attempts).forEach(([key, value]) => {
-                        questions.forEach((question) =>{
-                            
-                            //if the question title matches and correct choice chosen update the score maps
-                            if(question.title === key && question.correctChoiceIndex+1 == value){
-                                amountRight = amountRight+1;
-                                if (newQuestionScoreMap.get(question.title)){
-                                    newQuestionScoreMap.set(question.title,newQuestionScoreMap.get(question.title)+1);
-                                }else{
-                                    newQuestionScoreMap.set(question.title,1);
-                                }
+            let amountRight = 0;
 
-                            }
-        
-                        })
-                    });
+        if (attempt.attempts && questions.length > 0) {
+            Object.entries(attempt.attempts).forEach(([key, value]) => {
+                const question = questionLookup.get(key);
+
+                if (question && question.correctChoiceIndex + 1 == value) {
+                    // Update the user's correct answer count
+                    amountRight++;
+
+                    // Update the question score map
+                    if(newQuestionScoreMap.get(key)){
+                        newQuestionScoreMap.set(key, newQuestionScoreMap.get(key) + 1);
+                    }else{
+                        newQuestionScoreMap.set(key, 1);
+                    }
                 }
+            });
+        }
+
                 
                 newUserScoreMap.set(attempt.studentEmail,amountRight);
         });
