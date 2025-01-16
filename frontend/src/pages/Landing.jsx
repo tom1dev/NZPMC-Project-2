@@ -1,9 +1,9 @@
 import styles from '../styles/Landing.module.css'
 import { useEffect, useState } from 'react';
 import LoggedOutNotification from '../components/signIn/loggedOutNotification.jsx'
-import EventDisplay from '../components/event/EventDisplay.jsx'
+import EventDisplay from '../components/event/TableDisplay/EventDisplay.jsx'
 import SideBar from '../components/sideBar/SideBar.jsx';
-import CompetitionDisplay from '../components/competition/CompetitionDisplay.jsx';
+import CompetitionDisplay from '../components/competition/TableDisplay/CompetitionDisplay.jsx';
 import userService from '../services/userService';
 
 

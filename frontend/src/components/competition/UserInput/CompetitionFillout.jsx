@@ -1,11 +1,11 @@
 
-import style from "../../styles/competitionAnswering.module.css"
+import style from "../../../styles/competitionAnswering.module.css"
 import { useEffect,useState } from "react";
-import AnswerInput from "./AnswerInput";
-import competitionService from "../../services/competitionService";
-import userService from "../../services/userService";
-import attemptService from "../../services/attemptService";
-import CountdownTimer from "../misc/CountdownTimer";
+import AnswerInput from "./AnswerInput.jsx";
+import competitionService from "../../../services/competitionService.js";
+import userService from "../../../services/userService.js";
+import attemptService from "../../../services/attemptService.js";
+import CountdownTimer from "../../misc/CountdownTimer.jsx";
 
 const CompetitionFillout = ({competition}) =>{
     const[questions,setQuestions] = useState();

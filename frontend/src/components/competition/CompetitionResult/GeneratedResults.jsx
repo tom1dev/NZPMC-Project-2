@@ -1,11 +1,11 @@
-import style from '../../styles/UserPopup.module.css';
+import style from '../../../styles/UserPopup.module.css';
 import {useState, useEffect} from 'react'
-import attemptService from '../../services/attemptService';
-import UserResult from './UserResult';
-import competitionService from '../../services/competitionService';
-import Dropdown from '../misc/Dropdown';
+import attemptService from '../../../services/attemptService.js';
+import UserResult from './UserResult.jsx';
+import competitionService from '../../../services/competitionService.js';
+import Dropdown from '../../misc/Dropdown.jsx';
 import { use } from 'react';
-import ResultsMetrics from './ResultsMetrics';
+import ResultsMetrics from './ResultsMetrics.jsx';
 
 const GeneratedResults = ({togglePopup, competition}) => {
     const[attempts, setAttempts] = useState([]);

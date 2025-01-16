@@ -1,6 +1,6 @@
-import styles from '../../styles/Questions.module.css'
-import QuestionTableEntry from './QuestionTableEntry';
-import competitionService from '../../services/competitionService';
+import styles from '../../../styles/Questions.module.css'
+import QuestionTableEntry from './QuestionTableEntry.jsx';
+import competitionService from '../../../services/competitionService.js';
 //displays the question in a table format
 const QuestionAddTableEntry = ({ question,competitionTitle }) => {
 

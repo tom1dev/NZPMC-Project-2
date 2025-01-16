@@ -1,8 +1,8 @@
-import styles from '../../styles/Landing.module.css'
+import styles from '../../../styles/Landing.module.css'
 import {useState,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
-import AddQuestionPopup from '../question/AddQuestionPopup.jsx';
-import CompetitionDetailsPopup from './CompetitionDetailsPopup.jsx';
+import AddQuestionPopup from '../../question/AddQuestionPopup.jsx';
+import CompetitionDetailsPopup from '../popups/CompetitionDetailsPopup.jsx';
 
 const CompetitionEventLinkTableElement = ({competition, handleCompetitionLink}) => {
 

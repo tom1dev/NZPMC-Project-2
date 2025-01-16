@@ -1,14 +1,14 @@
 
-import styles from '../../styles/Landing.module.css'
+import styles from '../../../styles/Landing.module.css'
 import { useEffect, useState } from 'react';
 
-import userService from '../../services/userService.js';
-import eventService from '../../services/eventService.js';
+import userService from '../../../services/userService.js';
+import eventService from '../../../services/eventService.js';
 import CompetitionDetailsParramTitles from './CompetitionDetailsParramTitles.jsx';
 import CompetitionTableEntry from './CompetitionTableEntry.jsx';
-import competitionService from '../../services/competitionService.js';
-import Dropdown from '../misc/Dropdown.jsx';
-import CreateCompetition from './CreateCompetition.jsx';
+import competitionService from '../../../services/competitionService.js';
+import Dropdown from '../../misc/Dropdown.jsx';
+import CreateCompetition from '../CreateCompetition.jsx';
 
 const CompetitionDisplay = () => {
     const [competitions, setCompetitions] = useState([]);

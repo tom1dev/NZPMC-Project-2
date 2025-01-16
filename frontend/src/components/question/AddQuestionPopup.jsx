@@ -5,7 +5,7 @@ import competitionService from '../../services/competitionService';
 import Dropdown from '../misc/Dropdown';
 
 import CreateQuestion from './CreateQuestion';
-import QuestionDisplay from './QuestionDisplay';
+import QuestionDisplay from './TableDisplay/QuestionDisplay.jsx';
 
 const AddQuestionPopup = ({competition,setQuestionPopupOpen}) => {
     const [questions, setQuestions] = useState([]);

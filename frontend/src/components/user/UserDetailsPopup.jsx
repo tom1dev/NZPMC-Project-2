@@ -1,5 +1,5 @@
 import style from '../../styles/UserPopup.module.css';
-import EventTableEntry from '../event/EventTableEntry.jsx';
+import EventTableEntry from '../event/TableDisplay/EventTableEntry.jsx';
 import {useState,useEffect} from 'react';
 import userService from '../../services/userService.js';
 import eventService from '../../services/eventService.js';

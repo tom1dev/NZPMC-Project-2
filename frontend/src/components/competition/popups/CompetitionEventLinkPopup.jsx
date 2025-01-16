@@ -1,7 +1,7 @@
-import style from '../../styles/UserPopup.module.css';
+import style from '../../../styles/UserPopup.module.css';
 import {useState,useEffect} from 'react';
-import competitionService from '../../services/competitionService.js';
-import CompetitionEventLinkTableElement from './CompetitionEventLinkTableElement.jsx';
+import competitionService from '../../../services/competitionService.js';
+import CompetitionEventLinkTableElement from '../TableDisplay/CompetitionEventLinkTableElement.jsx';
 
 const CompetitionEventLinkPopup = ({togglePopup, event}) => {
     const[competitions, setCompetitions] = useState([]);

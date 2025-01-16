@@ -1,5 +1,5 @@
 
-import styles from '../../styles/Questions.module.css'
+import styles from '../../../styles/Questions.module.css'
 
 import QuestionTableEntry from './QuestionTableEntry.jsx';
 import QuestionAddTableEntry from './QuestionAddTableEntry.jsx';

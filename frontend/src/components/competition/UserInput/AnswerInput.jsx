@@ -1,6 +1,6 @@
 
 import {useState,useEffect} from 'react'
-import style from "../../styles/competitionAnswering.module.css"
+import style from "../../../styles/competitionAnswering.module.css"
 
 const AnswerInput = ({question, setAnswer}) =>{
 

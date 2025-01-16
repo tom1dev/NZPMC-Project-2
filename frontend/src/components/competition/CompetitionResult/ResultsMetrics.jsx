@@ -1,4 +1,4 @@
-import styles from "../../styles/competitionResults.module.css"
+import styles from "../../../styles/competitionResults.module.css"
 import {useState, useEffect} from 'react';
 import { BarChart } from '@mui/x-charts/BarChart'; 
 import { use } from "react";

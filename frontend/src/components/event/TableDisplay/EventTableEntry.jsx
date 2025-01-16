@@ -1,12 +1,12 @@
-import styles from '../../styles/Landing.module.css'
+import styles from '../../../styles/Landing.module.css'
 import {useState,useEffect} from 'react';
-import userService from '../../services/userService.js';
-import competitionService from '../../services/competitionService.js';
-import EventDetailsPopup from './EventDetailsPopup.jsx';
+import userService from '../../../services/userService.js';
+import competitionService from '../../../services/competitionService.js';
+import EventDetailsPopup from '../EventDetailsPopup.jsx';
 import { useNavigate } from 'react-router-dom';
-import CompetitionEventLinkPopup from '../competition/CompetitionEventLinkPopup.jsx';
-import CompetitionDetailsPopup from '../competition/CompetitionDetailsPopup.jsx';
-import GeneratedResults from '../competition/generatedResults.jsx';
+import CompetitionEventLinkPopup from '../../competition/popups/CompetitionEventLinkPopup.jsx';
+import CompetitionDetailsPopup from '../../competition/popups/CompetitionDetailsPopup.jsx';
+import GeneratedResults from '../../competition/CompetitionResult/GeneratedResults.jsx';
 
 
 const EventTableEntry = ({event,user,enrolled}) => {
