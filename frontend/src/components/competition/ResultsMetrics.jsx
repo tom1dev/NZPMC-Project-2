@@ -26,7 +26,9 @@ const ResultsMetrics = ({ questions, questionScoreMap ,userScoreMap }) => {
             low: 0
         }
 
-
+        if(userScoreMap.size === 0){
+            return;
+        }
 
         userScoreMap.values().forEach((value) => {
             newTextMetrics.mean += value/questions.length;
